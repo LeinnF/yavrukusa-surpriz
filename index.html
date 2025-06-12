@@ -141,17 +141,23 @@
 
   <!-- Bonus Video Galerisi -->
   <section class="bonus-section">
-    <h2>🎁 Bonus Video Galerisi</h2>
-    <p class="bonus-message">Sana özel videolarım ❤️</p>
-    <div class="scroll-gallery">
+  <h2>🎁 Bonus Video Galerisi</h2>
+  <p class="bonus-message">Sana özel videolarım ❤️</p>
+  <div class="gallery-wrapper">
+    <button class="scroll-btn left" onclick="scrollGallery('videoGallery', -1)">⬅</button>
+    <div class="scroll-gallery" id="videoGallery">
       <video controls preload="metadata" poster="bonus-videolar/video1-poster.jpg">
         <source src="bonus-videolar/video1.mp4" type="video/mp4" />
       </video>
       <video controls preload="metadata" poster="bonus-videolar/video2-poster.jpg">
         <source src="bonus-videolar/video2.mp4" type="video/mp4" />
       </video>
+      <!-- Yeni videoları bu yapıya uygun ekleyebilirsin -->
     </div>
-  </section>
+    <button class="scroll-btn right" onclick="scrollGallery('videoGallery', 1)">➡</button>
+  </div>
+</section>
+
 
   <script>
     const countdown = document.getElementById("countdown");
