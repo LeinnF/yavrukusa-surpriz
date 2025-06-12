@@ -101,39 +101,35 @@
 .scroll-btn:hover {
   background: #d6647a;
 }
+
     .kalp-yazisi {
-  width: 100%;
-  height: 100px;
-  margin-top: 20px;
+  margin-top: 30px;
+  overflow: hidden;
+  height: 150px;
 }
-.kalp-yazisi svg {
-  width: 100%;
-  height: 100%;
-}
-.kalp-yazisi text {
-  fill: var(--primary);
-  font-size: 24px;
-  font-family: 'Dancing Script', cursive;
-}
+
 
 
   </style>
 </head>
 <body>
+  
+  <h1>Yavrukuş'a Sürpriz 💖</h1>
 
   <div class="kalp-yazisi">
-  <svg viewBox="0 0 500 150" preserveAspectRatio="none">
-    <path d="M0,100 Q250,-50 500,100" id="kalp-yolu"></path>
-    <text>
-      <textPath href="#kalp-yolu" xlink:href="#kalp-yolu" xmlns:xlink="http://www.w3.org/1999/xlink">
-  Seni Çok Seviyorum Sevgilim 💖
-</textPath>
-
+  <svg viewBox="0 0 600 200" width="100%" height="150">
+    <path id="kalp-yolu" fill="none" stroke="none" d="M10,100 
+      Q150,-50 300,100 
+      T590,100" />
+    <text font-size="24" fill="#ff5c8a" font-family="'Dancing Script', cursive">
+      <textPath href="#kalp-yolu" startOffset="0%">
+        <animate attributeName="startOffset" from="0%" to="100%" dur="10s" repeatCount="indefinite" />
+        Seni çok seviyorum aşkım 💖
+      </textPath>
     </text>
   </svg>
 </div>
-  
-  <h1>Yavrukuş'a Sürpriz 💖</h1>
+
 
   <!-- Tarih Sayacı -->
   <section class="countdown-section">
