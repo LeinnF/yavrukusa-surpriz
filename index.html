@@ -74,6 +74,55 @@
       font-size: 1.5rem;
       color: #8c3b50;
     }
+    .gallery-wrapper {
+  position: relative;
+  max-width: 90%;
+  margin: auto;
+  overflow: hidden;
+}
+
+.scroll-gallery {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 10px 40px;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+}
+
+.scroll-gallery img,
+.scroll-gallery video {
+  flex: 0 0 auto;
+  width: 250px;
+  height: auto;
+  border-radius: 16px;
+  scroll-snap-align: start;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.scroll-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #ff8fa3;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 2;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-button.left {
+  left: 5px;
+}
+
+.scroll-button.right {
+  right: 5px;
+}
+
   </style>
 </head>
 <body>
@@ -93,31 +142,39 @@
   </section>
 
   <!-- Fotoğraf Galerisi -->
-  <section class="gallery-section">
-    <h2>📸 Fotoğraf Galerisi</h2>
-    <div class="scroll-gallery">
+<section class="gallery-section">
+  <h2>📸 Fotoğraf Galerisi</h2>
+  <div class="gallery-wrapper">
+    <button class="scroll-button left" onclick="scrollGallery('fotoGaleri', -1)">⬅</button>
+    <div class="scroll-gallery" id="fotoGaleri">
       <img src="fotoğraflar/foto1.jpg" alt="Foto 1">
       <img src="fotoğraflar/foto2.jpg" alt="Foto 2">
       <img src="fotoğraflar/foto3.jpg" alt="Foto 3">
       <img src="fotoğraflar/foto4.jpg" alt="Foto 4">
       <img src="fotoğraflar/foto5.jpg" alt="Foto 5">
-      <img src="fotoğraflar/foto6.jpg" alt="Foto 6">
     </div>
-  </section>
+    <button class="scroll-button right" onclick="scrollGallery('fotoGaleri', 1)">➡</button>
+  </div>
+</section>
+
 
   <!-- Bonus Video Galerisi -->
-  <section class="bonus-section">
-    <h2>🎁 Bonus Video Galerisi</h2>
-    <p class="bonus-message">Sana özel videolarım ❤️</p>
-    <div class="scroll-gallery">
-      <video controls preload="metadata" poster="bonus-videolar/video1-poster.jpg">
+<section class="bonus-section">
+  <h2>🎁 Bonus Video Galerisi</h2>
+  <div class="gallery-wrapper">
+    <button class="scroll-button left" onclick="scrollGallery('videoGaleri', -1)">⬅</button>
+    <div class="scroll-gallery" id="videoGaleri">
+      <video controls>
         <source src="bonus-videolar/video1.mp4" type="video/mp4" />
       </video>
-      <video controls preload="metadata" poster="bonus-videolar/video2-poster.jpg">
+      <video controls>
         <source src="bonus-videolar/video2.mp4" type="video/mp4" />
       </video>
     </div>
-  </section>
+    <button class="scroll-button right" onclick="scrollGallery('videoGaleri', 1)">➡</button>
+  </div>
+</section>
+
 
   <script>
     const countdown = document.getElementById("countdown");
@@ -136,6 +193,15 @@
     }
     setInterval(updateCountdown, 1000);
     updateCountdown();
+
+    <script>
+  function scrollGallery(id, direction) {
+    const container = document.getElementById(id);
+    const scrollAmount = 270;
+    container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+  }
+</script>
+
   </script>
 
 </body>
