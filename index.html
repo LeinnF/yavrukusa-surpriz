@@ -286,8 +286,8 @@
   position: fixed;
   bottom: 20px;
   left: 20px;
-  background-color: #ffd1dc;
-  color: #fff;
+  background-color: #ff8fa3;
+  color: #8c3b50;
   font-size: 20px;
   border-radius: 50%;
   width: 50px;
@@ -390,6 +390,124 @@
 
 
 
+.timeline {
+  max-width: 800px;
+  margin: 100px auto;
+  padding: 0 20px;
+  position: relative;
+}
+
+.timeline-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 60px;
+  font-family: 'Dancing Script', cursive;
+  color: #ff4d6d;
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 40px;
+  margin-bottom: 40px;
+  border-left: 3px solid #ff4d6d;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  background-color: #ff4d6d;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px #ffe3eb;
+}
+
+.timeline-date {
+  font-weight: bold;
+  color: #ff4d6d;
+  margin-bottom: 5px;
+  font-size: 1.1rem;
+}
+
+.timeline-content {
+  background: #fff0f5;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(255, 77, 109, 0.2);
+  animation: fadeUp 0.8s ease both;
+  font-size: 1rem;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  } to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 📱 Mobil Uyum - 768px altı ekranlar için */
+@media screen and (max-width: 768px) {
+  .timeline {
+    padding: 0 10px;
+  }
+
+  .timeline-title {
+    font-size: 2rem;
+    margin-bottom: 40px;
+  }
+
+  .timeline-item {
+    padding-left: 25px;
+  }
+
+  .timeline-item::before {
+    width: 12px;
+    height: 12px;
+    left: -6px;
+    box-shadow: 0 0 0 3px #ffe3eb;
+  }
+
+  .timeline-date {
+    font-size: 1rem;
+  }
+
+  .timeline-content {
+    font-size: 0.95rem;
+    padding: 12px 16px;
+  }
+}
+
+
+
+
+.mini-oyun-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  color: white;
+  background-color: #ff8fa3;
+  border-radius: 16px;
+  text-decoration: none;
+  font-family: 'Comic Sans MS', cursive;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.mini-oyun-btn:hover {
+  background-color: #ff8fa3;
+  transform: scale(1.05);
+}
+
+
+
+
+
+
 
   </style>
 </head>
@@ -424,6 +542,9 @@
 
 <!-- Uçan Kalplerin Olacağı Konteyner -->
 <div id="kalp-container"></div>
+
+
+
 
 
 
@@ -468,19 +589,41 @@
 </section>
 
 
+
+<a href="oyun.html" class="mini-oyun-btn" target="_blank">🎮 Mini Oyun</a>
+
+
+
+
+
+
+
   <!-- Fotoğraf Galerisi -->
   <section class="gallery-section">
-  <h2>📸 Fotoğraf Galerisi</h2>
+  <h2>☀️ Hanım</h2>
   <div class="gallery-wrapper">
     <button class="scroll-btn left" onclick="scrollGallery('photoGallery', -1)">⬅</button>
     <div class="scroll-gallery" id="photoGallery">
       <!-- fotoğraflar -->
-      <!--<img src="fotoğraflar/foto1.jpg" alt="Foto 1" />
-      <img src="fotoğraflar/foto2.jpg" alt="Foto 2" />
-      <img src="fotoğraflar/foto3.jpg" alt="Foto 3" /> -->
-      <img src="fotoğraflar/foto4.jpg" alt="Foto 4" />
       <img src="fotoğraflar/foto5.jpg" alt="Foto 5" />
       <img src="fotoğraflar/foto6.jpg" alt="Foto 6" />
+      <!-- diğer fotoğraflar -->
+    </div>
+    <button class="scroll-btn right" onclick="scrollGallery('photoGallery', 1)">➡</button>
+  </div>
+</section>
+
+<!-- Birlikte Fotoğraf Galerisi -->
+  <section class="gallery-section">
+  <h2>👩‍❤️‍👨 US</h2>
+  <div class="gallery-wrapper">
+    <button class="scroll-btn left" onclick="scrollGallery('photoGallery', -1)">⬅</button>
+    <div class="scroll-gallery" id="photoGallery">
+      <!-- fotoğraflar -->
+      <img src="fotoğraflar/foto1.jpg" alt="Foto 1" />
+      <img src="fotoğraflar/foto2.jpg" alt="Foto 2" />
+      <img src="fotoğraflar/foto3.jpg" alt="Foto 3" />
+      <img src="fotoğraflar/foto4.jpg" alt="Foto 4" />
       <img src="fotoğraflar/foto7.jpg" alt="Foto 7" />
       <!-- diğer fotoğraflar -->
     </div>
@@ -753,6 +896,17 @@ window.addEventListener('click', (e) => {
     closeModal();
   }
 });
+
+
+// Mini oyun scripti
+  
+
+
+
+
+
+
+
 
 
 
