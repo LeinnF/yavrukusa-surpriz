@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sana Sürprizim Var</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff0f3;
+      color: #2d2d2d;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    h1 { color: #c1121f; font-size: 2.5em; }
+    h2 { color: #800000; }
+    .counter { font-size: 2em; margin: 20px 0; color: #b91c1c; }
+    .section { margin: 50px auto; max-width: 700px; background: #fff; padding: 20px; border-radius: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
+    .surprise-btn {
+      background-color: #ff5c8a;
+      color: white;
+      padding: 15px 30px;
+      font-size: 1em;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+    .photo-gallery img {
+      width: 100px;
+      height: 100px;
+      margin: 5px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+    .song-embed iframe {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Seni Özlediğimde Açman İçin</h1>
+  <div class="counter" id="countdown"></div>
+
+  <div class="section">
+    <h2>📁 Haftalık Sürprizler</h2>
+    <ul style="list-style:none; padding:0;">
+      <li>1. Hafta: <a href="#">Sesli mesaj</a></li>
+      <li>2. Hafta: <a href="#">Birlikteki bir anı</a></li>
+      <li>3. Hafta: <a href="#">Sana bir görev</a></li>
+      <li>4. Hafta: <a href="#">Bir şarkı</a></li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>📸 Anılar Galerisi</h2>
+    <div class="photo-gallery">
+      <img src="https://via.placeholder.com/100x100.png?text=Anı1" alt="Anı 1">
+      <img src="https://via.placeholder.com/100x100.png?text=Anı2" alt="Anı 2">
+      <img src="https://via.placeholder.com/100x100.png?text=Anı3" alt="Anı 3">
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>🎶 Şarkı Köşesi</h2>
+    <div class="song-embed">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5vcsNEQW5EUAkM3BPfLgWb?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>🎲 Sürpriz Buton</h2>
+    <p id="surprise-text">Bugünün sürprizi için tıkla!</p>
+    <button class="surprise-btn" onclick="showSurprise()">🎁 Tıkla</button>
+  </div>
+
+  <script>
+    const countdown = document.getElementById("countdown");
+    const target = new Date("October 10, 2025 00:00:00").getTime();
+
+    setInterval(() => {
+      const now = new Date().getTime();
+      const diff = target - now;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      countdown.innerText = `Sana kavuşmama ${days} gün kaldı 💕`;
+    }, 1000);
+
+    const surprises = [
+      "Bugün çok güzelsin, biliyor musun? 💖",
+      "Sana sarılmak için gün sayıyorum! 🤗",
+      "Birlikte dondurma yemeye gideceğiz, söz 🍦",
+      "Şu an gözlerin aklıma geldi… yine aşık oldum ✨"
+    ];
+
+    function showSurprise() {
+      const text = surprises[Math.floor(Math.random() * surprises.length)];
+      document.getElementById("surprise-text").innerText = text;
+    }
+  </script>
+</body>
+</html>
