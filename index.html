@@ -74,6 +74,32 @@
       font-size: 1.5rem;
       color: #8c3b50;
     }
+    .gallery-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 90vw;
+  margin: auto;
+}
+
+.scroll-btn {
+  background: var(--primary);
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  padding: 10px 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: background 0.3s;
+}
+
+.scroll-btn:hover {
+  background: #d6647a;
+}
+
   </style>
 </head>
 <body>
@@ -94,16 +120,18 @@
 
   <!-- Fotoğraf Galerisi -->
   <section class="gallery-section">
-    <h2>📸 Fotoğraf Galerisi</h2>
-    <div class="scroll-gallery">
-      <img src="fotoğraflar/foto1.jpg" alt="Foto 1">
-      <img src="fotoğraflar/foto2.jpg" alt="Foto 2">
-      <img src="fotoğraflar/foto3.jpg" alt="Foto 3">
-      <img src="fotoğraflar/foto4.jpg" alt="Foto 4">
-      <img src="fotoğraflar/foto5.jpg" alt="Foto 5">
-      <img src="fotoğraflar/foto6.jpg" alt="Foto 6">
+  <h2>📸 Fotoğraf Galerisi</h2>
+  <div class="gallery-wrapper">
+    <button class="scroll-btn left" onclick="scrollGallery('photoGallery', -1)">⬅</button>
+    <div class="scroll-gallery" id="photoGallery">
+      <!-- fotoğraflar -->
+      <img src="fotoğraflar/foto1.jpg" alt="Foto 1" />
+      <!-- diğer fotoğraflar -->
     </div>
-  </section>
+    <button class="scroll-btn right" onclick="scrollGallery('photoGallery', 1)">➡</button>
+  </div>
+</section>
+
 
   <!-- Bonus Video Galerisi -->
   <section class="bonus-section">
@@ -136,6 +164,16 @@
     }
     setInterval(updateCountdown, 1000);
     updateCountdown();
+
+    function scrollGallery(id, direction) {
+  const container = document.getElementById(id);
+  const scrollAmount = 270; // resim/video genişliği + gap
+  container.scrollBy({
+    left: direction * scrollAmount,
+    behavior: 'smooth'
+  });
+}
+
   </script>
 
 </body>
