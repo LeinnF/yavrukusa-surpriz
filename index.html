@@ -5,8 +5,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
-  <title>Yavrukuş'a Sürpriz</title>
+  <link rel="icon" href="fotoğraflar/favicon.png" type="image/png">
+  <title>Yavrukuş'a</title>
   <style>
+
+
     :root {
       --primary: #ff8fa3;
       --secondary: #ffe6ec;
@@ -155,13 +158,191 @@
   }
 }
 
+.bonus-secret {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.secret-button {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  border-radius: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: background 0.3s ease;
+}
+
+.secret-button:hover {
+  background-color: #ff6d8a;
+}
+
+.animated-message {
+  display: none;
+  margin-top: 20px;
+  font-size: 1.1rem;
+  color: #6a1b2d;
+  animation: fadeInText 2s ease forwards;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@keyframes fadeInText {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+
+
+
+  .timeline-section {
+    padding: 40px 20px;
+    background: #fff0f5;
+    border-radius: 16px;
+    margin: 40px auto;
+    width: 90%;
+    max-width: 700px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    text-align: center;
+  }
+
+  #timeline-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 20px;
+  }
+
+  #timeline-list li {
+    margin: 10px 0;
+    font-size: 1.1rem;
+    opacity: 1;
+    transition: all 0.3s ease;
+  }
+
+  #timeline-list li.hidden {
+    display: none;
+  }
+
+  #toggle-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #ff8fa3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+
+  #toggle-button:hover {
+    background-color: #e56b84;
+  }
+
+
+/* Kalp Buton */
+#muzik-kalp-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #ff8fa3;
+  color: white;
+  border: none;
+  font-size: 24px;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  cursor: pointer;
+  z-index: 100;
+  transition: transform 0.3s ease;
+}
+#muzik-kalp-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Müzik Popup */
+#muzik-popup {
+  position: fixed;
+  bottom: 90px;
+  right: 30px;
+  background: #ffe6ec;
+  color: #8c3b50;
+  padding: 10px 16px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 99;
+  transition: opacity 0.3s ease;
+}
+.hidden {
+  display: none;
+}
+
+/* Uçan Sembolleri Aç/Kapat Butonu - Sol Alt */
+#sembol-toggle {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: #ffd1dc;
+  color: #fff;
+  font-size: 20px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  z-index: 999;
+}
+
+#sembol-toggle:hover {
+  background-color: #ff91a4;
+}
+
+#kalp-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+.kalp {
+  position: absolute;
+  color: #ff8fa3;
+  font-size: 24px;
+  animation: ucarKalp 4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes ucarKalp {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) scale(1.5);
+    opacity: 0;
+  }
+}
+
+
+
 
 
   </style>
 </head>
 <body>
   
-  <h1>Yavrukuş'a Sürpriz 💖</h1>
+  <h1>Şebekten Yavrukuşuna 💖</h1>
 
   <div class="kalp-yazisi">
   <svg viewBox="0 0 600 200" width="100%" height="150">
@@ -171,7 +352,7 @@
     <text font-size="24" fill="#ff5c8a" font-family="'Dancing Script', cursive">
       <textPath href="#kalp-yolu" startOffset="0%">
         <animate attributeName="startOffset" from="0%" to="100%" dur="10s" repeatCount="indefinite" />
-        Seni çok seviyorum sevgilimmm 💖
+        Seni çok seviyorum aşkadınımmm 💖
       </textPath>
     </text>
   </svg>
@@ -184,11 +365,55 @@
     <p class="countdown" id="countdown"></p>
   </section>
 
-  <!-- Şarkı Köşesi -->
+
+<!-- Uçan Kalpleri Aç/Kapat Butonu -->
+<button id="sembol-toggle" onclick="toggleKalpler()">✨</button>
+
+<!-- Uçan Kalplerin Olacağı Konteyner -->
+<div id="kalp-container"></div>
+
+
+
+<!-- YOUTUBE ŞARKI BÖLÜMÜNÜ ŞİMDİLİK KALDIRDIM YT VİDEOLARINI OYNATMIYOR -->
+  <!-- Şarkı Köşesi 
   <section class="music-section">
     <h2>🎵 Haftanın Şarkısı</h2>
-    <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
-  </section>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/qbS3ZUTfj-o?si=KZbU8mkkuZI7dYLC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </section> -->
+	
+
+
+<div class="bonus-secret">
+  <button class="secret-button">💖 Bana Tıkla!</button>
+  <div class="animated-message" id="duygusalMesaj">
+    <span id="mesajMetni"></span>
+  </div>
+</div>
+
+<!-- Sağ altta müzik butonu -->
+<button id="muzik-kalp-btn" onclick="toggleMuzik()">🎧</button>
+
+<!-- Müzik popup bildirimi -->
+<div id="muzik-popup" class="hidden">
+  <p>🎧 Müzik açık!</p>
+</div>
+
+<!-- Arka plan müzik dosyası -->
+<audio id="bg-music" loop>
+  <source src="muzik/sarki1.mp3" type="audio/mpeg" />
+</audio>
+
+
+
+
+<section class="timeline-section">
+  <h2>🕰️ Anılarımız</h2>
+  <ul id="timeline-list">
+    <!-- Anılar buraya eklenecek -->
+  </ul>
+  <button id="toggle-button">Daha Fazla Göster ⬇️</button>
+</section>
+
 
   <!-- Fotoğraf Galerisi -->
   <section class="gallery-section">
@@ -230,7 +455,39 @@
   </div>
 </section>
 
-  <footer id="randomNote"></footer>
+
+
+
+
+
+  <script>
+  let kalplerAktif = false;
+  let kalpInterval;
+
+  function toggleKalpler() {
+    const container = document.getElementById("kalp-container");
+
+    if (!kalplerAktif) {
+      kalplerAktif = true;
+      kalpInterval = setInterval(() => {
+        const kalp = document.createElement("div");
+        kalp.classList.add("kalp");
+        kalp.style.left = Math.random() * 100 + "vw";
+        kalp.style.top = "100vh";
+        kalp.textContent = ["💖", "💕", "💘", "💝", "💗"][Math.floor(Math.random() * 5)];
+        container.appendChild(kalp);
+        setTimeout(() => kalp.remove(), 4000);
+      }, 300);
+    } else {
+      kalplerAktif = false;
+      clearInterval(kalpInterval);
+    }
+  }
+</script>
+
+
+
+
 
 
   <script>
@@ -259,18 +516,89 @@
     behavior: 'smooth'
   });
 }
-    const sevgiNotlari = [
-  "Sana her baktığımda kalbim hızlanıyor 💗",
+
+
+const mesajlar = [
+  "Seni düşündüğüm her saniye kalbim hızlanıyor... 💖",
+  "Her sabah seninle uyanmak hayalim... ☀️",
+  "Gülüşün dünyadaki en güzel melodi... 🎶",
+  "Mesafeler sadece rakam, kalbim hep yanında... 💌",
+  "Sana her baktığımda iyi ki diyorum... 🌷",
+  "Gözlerinle başlıyor günüm, aklımdasın... 🌙",
   "Seninle her günüm özel 💞",
   "Sesini duymak bile yetiyor mutlu olmama 💖",
   "Gözlerin dünyamı aydınlatıyor 🌟",
   "Özlemek bile güzel çünkü seni seviyorum 💘"
 ];
-function rastgeleNot() {
-  const rastgele = sevgiNotlari[Math.floor(Math.random() * sevgiNotlari.length)];
-  document.getElementById("randomNote").textContent = rastgele;
-}
-rastgeleNot();
+
+document.querySelector(".secret-button").addEventListener("click", () => {
+  const randomIndex = Math.floor(Math.random() * mesajlar.length);
+  const mesaj = mesajlar[randomIndex];
+
+  const mesajKutusu = document.getElementById("duygusalMesaj");
+  const mesajMetni = document.getElementById("mesajMetni");
+
+  mesajMetni.textContent = mesaj;
+  mesajKutusu.style.display = "block";
+  mesajKutusu.style.animation = "none";
+  void mesajKutusu.offsetWidth; // animasyonu sıfırlamak için
+  mesajKutusu.style.animation = "fadeInText 0.8s ease forwards";
+});
+
+
+
+  const anilar = [
+    { tarih: "16 Mart 2025", aciklama: "İlk öpücük 💋" },
+    { tarih: "3 Haziran 2025", aciklama: "Work & Travel ✈️" },
+    { tarih: "10 Ekim 2025", aciklama: "Büyük Kavuşma Günü 💞" },
+    { tarih: "14 Şubat 2026", aciklama: "İlk Sevgililer Günümüz 💘" },
+
+  ];
+
+  const timelineList = document.getElementById("timeline-list");
+
+  anilar.forEach((anı, index) => {
+    const li = document.createElement("li");
+    li.textContent = `${anı.tarih} - ${anı.aciklama}`;
+    if (index >= 3) li.classList.add("hidden");
+    timelineList.appendChild(li);
+  });
+
+  const toggleBtn = document.getElementById("toggle-button");
+  let gosteriliyor = false;
+
+  toggleBtn.addEventListener("click", () => {
+    gosteriliyor = !gosteriliyor;
+    document.querySelectorAll("#timeline-list li").forEach((li, index) => {
+      if (index >= 3) {
+        li.classList.toggle("hidden", !gosteriliyor);
+      }
+    });
+    toggleBtn.textContent = gosteriliyor ? "Daha Az Göster ⬆️" : "Daha Fazla Göster ⬇️";
+  });
+
+
+
+
+  const muzik = document.getElementById("bg-music");
+  const popup = document.getElementById("muzik-popup");
+  let muzikAcik = false;
+
+  function toggleMuzik() {
+    if (!muzikAcik) {
+      muzik.play();
+      popup.classList.remove("hidden");
+    } else {
+      muzik.pause();
+      popup.classList.add("hidden");
+    }
+    muzikAcik = !muzikAcik;
+  }
+
+
+
+
+
 
 
   </script>
