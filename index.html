@@ -108,6 +108,53 @@
   height: 150px;
 }
 
+/* Mobil cihazlar için (max-width: 600px) */
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+  h1 {
+    font-size: 1.8em;
+  }
+  h2 {
+    font-size: 1.4em;
+  }
+  .scroll-gallery img,
+  .scroll-gallery video {
+    width: 180px;
+    height: auto;
+  }
+  .music-section iframe {
+    width: 100%;
+    height: 180px;
+  }
+  .countdown {
+    font-size: 1.2rem;
+  }
+}
+
+/* Tablet cihazlar için (601px - 900px) */
+@media (min-width: 601px) and (max-width: 900px) {
+  body {
+    font-size: 16px;
+  }
+  h1 {
+    font-size: 2em;
+  }
+  h2 {
+    font-size: 1.6em;
+  }
+  .scroll-gallery img,
+  .scroll-gallery video {
+    width: 220px;
+    height: auto;
+  }
+  .music-section iframe {
+    width: 320px;
+    height: 180px;
+  }
+}
+
 
 
   </style>
@@ -124,7 +171,7 @@
     <text font-size="24" fill="#ff5c8a" font-family="'Dancing Script', cursive">
       <textPath href="#kalp-yolu" startOffset="0%">
         <animate attributeName="startOffset" from="0%" to="100%" dur="10s" repeatCount="indefinite" />
-        Seni çok seviyorum aşkım 💖
+        Seni çok seviyorum sevgilimmm 💖
       </textPath>
     </text>
   </svg>
