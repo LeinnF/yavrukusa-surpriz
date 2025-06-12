@@ -213,6 +213,19 @@
     behavior: 'smooth'
   });
 }
+    const sevgiNotlari = [
+  "Sana her baktığımda kalbim hızlanıyor 💗",
+  "Seninle her günüm özel 💞",
+  "Sesini duymak bile yetiyor mutlu olmama 💖",
+  "Gözlerin dünyamı aydınlatıyor 🌟",
+  "Özlemek bile güzel çünkü seni seviyorum 💘"
+];
+function rastgeleNot() {
+  const rastgele = sevgiNotlari[Math.floor(Math.random() * sevgiNotlari.length)];
+  document.getElementById("randomNote").textContent = rastgele;
+}
+rastgeleNot();
+
 
   </script>
 
