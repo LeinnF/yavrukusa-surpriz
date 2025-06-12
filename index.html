@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Yavru Kuşa Sürpriz</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #fff0f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #c2185b;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-weight: 700;
+            font-size: 2.5em;
+            letter-spacing: 2px;
+        }
+        section {
+            padding: 20px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+        .gallery-section {
+            padding: 40px 20px;
+            background: #fff0f5;
+            text-align: center;
+        }
+        .gallery-section h2 {
+            font-size: 2em;
+            color: #c2185b;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            padding: 0 10px;
+        }
+        .photo-gallery img {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            object-fit: cover;
+            aspect-ratio: 4 / 3;
+        }
+        .photo-gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.9em;
+            background-color: #c2185b;
+            color: white;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Yavru Kuşa Sürpriz</h1>
+    </header>
+    <section id="galeri" class="gallery-section">
+        <h2>💖 Birlikte Anılarımız</h2>
+        <div class="photo-gallery">
+            <img src="fotoğraflar/1.jpg" alt="Anı 1" />
+            <img src="fotoğraflar/2.jpg" alt="Anı 2" />
+            <img src="fotoğraflar/3.jpg" alt="Anı 3" />
+            <img src="fotoğraflar/4.jpg" alt="Anı 4" />
+            <img src="fotoğraflar/5.jpg" alt="Anı 5" />
+        </div>
+    </section>
+    <footer>
+        &copy; 2025 Yavru Kuşa Sürpriz
+    </footer>
+</body>
+</html>
