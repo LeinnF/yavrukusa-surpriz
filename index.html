@@ -150,6 +150,23 @@
       height: 200px;
     }
   }
+
+  .video-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+.video-gallery video {
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.video-gallery video:hover {
+  transform: scale(1.05);
+}
+
 </style>
 </head>
 <body>
@@ -184,14 +201,21 @@
 </section>
 
 <section class="bonus-section">
-  <h2>🎁 Bonus Mesajlı Video</h2>
-  <p class="bonus-message">Sana özel bir sürpriz video :)</p>
-  <div class="bonus-video">
-    <!-- Bonus video linki buraya -->
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-      title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+  <h2>🎁 Bonus Video Galerisi</h2>
+  <p class="bonus-message">Sana özel videolarım ❤️</p>
+  <div class="video-gallery">
+    <video controls width="300" height="170" preload="metadata" poster="bonus-videolar/video1-poster.jpg" >
+      <source src="bonus-videolar/video1.mp4" type="video/mp4" />
+      Tarayıcınız video etiketini desteklemiyor.
+    </video>
+    <video controls width="300" height="170" preload="metadata" poster="bonus-videolar/video2-poster.jpg" >
+      <source src="bonus-videolar/video2.mp4" type="video/mp4" />
+      Tarayıcınız video etiketini desteklemiyor.
+    </video>
+    <!-- Yeni videolar için buraya ekleyebilirsiniz -->
   </div>
 </section>
+
 
 <footer>
   &copy; 2025 Yavru Kuşa Sürpriz
