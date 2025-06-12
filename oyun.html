@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="fotoğraflar/favicon.png" type="image/png">
+  <title>Mini Aşk Oyunu 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background-color: #fff0f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .memory-game {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px; /* KARTLAR ARASI BOŞLUK */
+      width: 85vmin;
+      max-width: 480px;
+      margin-top: 20px;
+    }
+
+    .memory-card {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      perspective: 1000px;
+      cursor: pointer;
+    }
+
+    .front, .back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      backface-visibility: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      font-size: 0.9rem;
+      transition: transform 0.6s;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 6px;
+      text-align: center;
+    }
+
+    .front {
+      background-color: #ffe4e1;
+      transform: rotateY(180deg);
+    }
+
+    .back {
+      background-color: #ff69b4;
+      color: white;
+    }
+
+    .flip .front {
+      transform: rotateY(0deg);
+    }
+
+    .flip .back {
+      transform: rotateY(180deg);
+    }
+
+    .game-message {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 20px 28px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #d63384;
+      border-radius: 16px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+      display: none;
+      z-index: 1000;
+    }
+
+    .restart-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      background-color: #ff69b4;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: background-color 0.3s;
+    }
+
+    .restart-button:hover {
+      background-color: #ff1493;
+    }
+  </style>
+</head>
+<body>
+  <h2>Mini Aşk Oyunu 💖</h2>
+  <button class="restart-button" onclick="restartGame()">Yeniden Başla 🔄</button>
+  <div class="memory-game"></div>
+  <div class="game-message" id="gameMessage">🎉 Tüm sevgiler eşleşti! Seni çok seviyorum 💘</div>
+
+  <script>
+    const reasons = [
+      "Gülüşün içimi ısıtıyor",
+      "Yanımdayken her şey güzel",
+      "Bana kendimi özel hissettiriyorsun",
+      "Birlikte her şey daha anlamlı",
+      "Sabahları aklıma gelen ilk şeysin",
+      "Gözlerinle kayboluyorum",
+    ];
+
+    const gameContainer = document.querySelector(".memory-game");
+    const message = document.getElementById("gameMessage");
+    let matchedCount = 0;
+    let flippedCards = [];
+
+    function createCard(text) {
+      const card = document.createElement("div");
+      card.classList.add("memory-card");
+      card.innerHTML = `
+        <div class="front">${text}</div>
+        <div class="back">💖</div>
+      `;
+      card.addEventListener("click", () => {
+        if (card.classList.contains("flip") || flippedCards.length === 2) return;
+        card.classList.add("flip");
+        flippedCards.push(card);
+
+        if (flippedCards.length === 2) {
+          const [card1, card2] = flippedCards;
+          const isMatch = card1.querySelector(".front").innerText === card2.querySelector(".front").innerText;
+
+          if (isMatch) {
+            matchedCount++;
+            flippedCards = [];
+
+            if (matchedCount === reasons.length) {
+              showConfetti();
+              setTimeout(() => {
+                message.style.display = "block";
+              }, 500);
+            }
+          } else {
+            setTimeout(() => {
+              card1.classList.remove("flip");
+              card2.classList.remove("flip");
+              flippedCards = [];
+            }, 1000);
+          }
+        }
+      });
+      return card;
+    }
+
+    function initializeGame() {
+      gameContainer.innerHTML = "";
+      message.style.display = "none";
+      matchedCount = 0;
+      flippedCards = [];
+
+      const shuffled = [...reasons, ...reasons].sort(() => 0.5 - Math.random());
+      shuffled.forEach((text) => {
+        const card = createCard(text);
+        gameContainer.appendChild(card);
+      });
+    }
+
+    function restartGame() {
+      initializeGame();
+    }
+
+    function showConfetti() {
+      const duration = 3 * 1000;
+      const end = Date.now() + duration;
+
+      const interval = setInterval(() => {
+        if (Date.now() > end) {
+          clearInterval(interval);
+        }
+        confetti({
+          particleCount: 7,
+          origin: { x: Math.random(), y: Math.random() - 0.2 },
+          shapes: ['circle'],
+          colors: ['#ff69b4', '#ffb6c1', '#fff0f5']
+        });
+      }, 100);
+    }
+
+    // Oyunu başlat
+    initializeGame();
+  </script>
+</body>
+</html>
