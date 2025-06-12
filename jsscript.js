@@ -1,34 +1,54 @@
+// Sayaç (10 Ekim için)
+function countdown() {
+  const targetDate = new Date('2025-10-10T00:00:00');
+  const now = new Date();
+  const diff = targetDate - now;
+
+  if (diff <= 0) {
+    document.getElementById('sayac').textContent = "💕 Kavuşma Günü Geldi! 💕";
+    clearInterval(interval);
+    return;
+  }
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+
+  document.getElementById('sayac').textContent = `Kavuşmamıza ${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye kaldı.`;
+}
+
+const interval = setInterval(countdown, 1000);
+countdown();
+
+
+// Fotoğraf ve Video galerisi kaydırma fonksiyonu
 function scrollGallery(id, direction) {
   const container = document.getElementById(id);
-  const scrollAmount = 270;
+  const scrollAmount = 240; // Kaydırma mesafesi (px)
   container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
 }
 
+// Anı defteri notlarını localStorage'da saklama
 function kaydetNot() {
-  const not = document.getElementById('defter').value;
-  localStorage.setItem('aniDefteri', not);
+  const textarea = document.getElementById('defter');
+  const not = textarea.value.trim();
+
+  if (!not) {
+    alert('Lütfen bir not yazınız!');
+    return;
+  }
+
+  let notlar = JSON.parse(localStorage.getItem('notlar') || '[]');
+  notlar.push(not);
+  localStorage.setItem('notlar', JSON.stringify(notlar));
+
+  textarea.value = '';
+  alert('Notunuz kaydedildi!');
+
+  gosterNotlar();
 }
 
-window.onload = function () {
-  // Anı Defteri'ni yükle
-  const not = localStorage.getItem('aniDefteri');
-  if (not) document.getElementById('defter').value = not;
-
-  // Rastgele sevgi notu göster
-  const notlar = [
-    "Seninle her şey daha güzel 💖",
-    "Birlikte nice anılara 💫",
-    "Sana her baktığımda içim ısınıyor 💌",
-    "Kalbim hep seninle atıyor 💓",
-    "Sonsuza kadar seninle olmak istiyorum 💍"
-  ];
-  document.getElementById('randomNote').innerText =
-    notlar[Math.floor(Math.random() * notlar.length)];
-
-  // Sayaca 10 Ekim'e kalan gün
-  const hedefTarih = new Date("2025-10-10");
-  const bugun = new Date();
-  const fark = hedefTarih - bugun;
-  const gun = Math.ceil(fark / (1000 * 60 * 60 * 24));
-  document.getElementById("sayac").innerText = `Kavuşmamıza ${gun} gün kaldı 💕`;
-};
+function gosterNotlar() {
+  let notlar = JSON.parse(localStorage.getItem('notlar') || '[]');
+  if (notlar
