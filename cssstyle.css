@@ -1,0 +1,82 @@
+/* Genel Ayarlar */
+body {
+  font-family: 'Dancing Script', cursive;
+  background: linear-gradient(135deg, #f7c8db, #fceaff);
+  color: #5a2a4a;
+  margin: 0;
+  padding: 20px;
+  overflow-x: hidden;
+}
+
+h2 {
+  text-align: center;
+  color: #a83279;
+  margin-bottom: 10px;
+  text-shadow: 1px 1px 2px #fceaff;
+}
+
+/* Kalp Yazısı Animasyonu */
+.kalp-yazisi {
+  width: 100%;
+  height: 120px;
+  margin-bottom: 15px;
+  overflow: visible;
+  user-select: none;
+}
+
+.kalp-yazisi svg {
+  width: 100%;
+  height: 100%;
+}
+
+.kalp-yazisi textPath {
+  font-size: 2.2rem;
+  fill: #d93a84;
+  letter-spacing: 2px;
+  animation: heartPulse 2s infinite alternate;
+}
+
+@keyframes heartPulse {
+  0% { fill: #d93a84; }
+  100% { fill: #f06292; }
+}
+
+/* Sayaç */
+#sayac {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 600;
+  color: #c2185b;
+  text-shadow: 1px 1px 3px #fceaff;
+}
+
+/* Galeri Genel */
+.gallery-section, .bonus-section, .music-section, .timeline-section, .not-defteri {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 15px;
+  padding: 15px 25px 25px 25px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 10px rgba(215, 132, 180, 0.3);
+}
+
+/* Galeri Başlıkları */
+.gallery-section h2, .bonus-section h2, .music-section h2, .timeline-section h2, .not-defteri h2 {
+  font-weight: 700;
+}
+
+/* Fotoğraf ve Video Galerisi */
+.gallery-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.scroll-gallery {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 10px;
+  padding: 10px 0;
+  scrollbar-width: none; /* Fir*
