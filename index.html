@@ -37,6 +37,38 @@
     .song-embed iframe {
       margin-top: 10px;
     }
+
+    .gallery-section {
+  padding: 40px 20px;
+  background: #fff0f5;
+  text-align: center;
+}
+
+.gallery-section h2 {
+  font-size: 2em;
+  color: #c2185b;
+  margin-bottom: 20px;
+}
+
+.photo-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 0 10px;
+}
+
+.photo-gallery img {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.photo-gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
   </style>
 </head>
 <body>
@@ -53,14 +85,18 @@
     </ul>
   </div>
 
-  <div class="section">
-    <h2>📸 Anılar Galerisi</h2>
-    <div class="photo-gallery">
-      <img src="https://via.placeholder.com/100x100.png?text=Anı1" alt="Anı 1">
-      <img src="https://via.placeholder.com/100x100.png?text=Anı2" alt="Anı 2">
-      <img src="https://via.placeholder.com/100x100.png?text=Anı3" alt="Anı 3">
-    </div>
+<section id="galeri" class="gallery-section">
+  <h2>💖 Birlikte Anılarımız</h2>
+  <div class="photo-gallery">
+    <img src="fotoğraflar/1.jpg" alt="Anı 1">
+    <img src="fotoğraflar/2.jpg" alt="Anı 2">
+    <img src="fotoğraflar/3.jpg" alt="Anı 3">
+    <img src="fotoğraflar/4.jpg" alt="Anı 4">
+    <img src="fotoğraflar/5.jpg" alt="Anı 5">
+    <!-- Yeni fotoğrafları sadece bu satıra yenilerini ekleyerek dahil edebilirsin -->
   </div>
+</section>
+
 
   <div class="section">
     <h2>🎶 Şarkı Köşesi</h2>
