@@ -503,13 +503,23 @@ background-color: #e56b84;
 }
 
 
-button:focus, img:focus, a:focus, input:focus, textarea:focus {
-  outline: none;
+.kalp-nabiz {
+  font-size: 5rem;
+  animation: heartBeat 1.5s infinite;
+  display: inline-block;
+  margin: 20px 0;
 }
 
-button, img, a {
-  -webkit-tap-highlight-color: transparent;
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.2); }
+  50% { transform: scale(1); }
+  75% { transform: scale(1.2); }
 }
+
+
+
+
 
 
 
@@ -519,7 +529,7 @@ button, img, a {
 </head>
 <body>
   
-  <h1>Şebekten Yavrukuşuna 💖</h1>
+  <h1 style="font-family: 'Dancing Script', cursive; color: #ff4d6d; font-size: 2.2rem;"> ⋆｡ﾟ☁︎｡⋆｡ ﾟ☾ ﾟ｡⋆ Şebekten Yavrukuşuna 𓅰 𓅬 𓅭 𓅮 𓅯</h1>
 
   <div class="kalp-yazisi">
   <svg viewBox="0 0 600 200" width="100%" height="150">
@@ -536,10 +546,32 @@ button, img, a {
 </div>
 
 
+
+
+
+<!-- Aşk Sayacı -->
+<section id="ask-sayaci" style="margin: 40px 0; text-align: center;">
+  <h2 style="font-family: 'Dancing Script', cursive; color: #ff4d6d; font-size: 2.2rem;">💕 Kalbe Düşen Günler 💕</h2>
+  <p style="font-size: 1.4rem; color: #8c3b50 ;">
+     <span id="daysTogether"></span>  ﮩـﮩﮩ٨ـ𓆩 ♡ 𓆪ﮩ٨ـﮩﮩ٨ـ♾️
+  </p>
+</section>
+
+<script>
+  const sevgiliOlunanTarih = new Date("2024-03-16"); // İlk öpüşme tarihi
+  const bugun = new Date();
+  const gunFarki = Math.floor((bugun - sevgiliOlunanTarih) / (1000 * 60 * 60 * 24));
+  document.getElementById("daysTogether").textContent = gunFarki;
+</script>
+
+
+
+
   <!-- Tarih Sayacı -->
   <section class="countdown-section">
-    <h2>🎯 Sana Kavuşmama Kalan Süre</h2>
+    <h2 style="font-family: 'Dancing Script', cursive; color: #ff4d6d; font-size: 2.2rem;">Sana Kavuşmama Kalan Süre</h2>
     <p class="countdown" id="countdown"></p>
+
   </section>
 
 
@@ -561,6 +593,9 @@ button, img, a {
     <iframe width="560" height="315" src="https://www.youtube.com/embed/qbS3ZUTfj-o?si=KZbU8mkkuZI7dYLC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
   </section> -->
 	
+
+
+<div class="kalp-nabiz">💗</div>
 
 
 <div class="bonus-secret">
@@ -586,8 +621,11 @@ button, img, a {
 
 
 
+
+
+
 <section class="timeline-section">
-  <h2>🕰️ Anılarımız</h2>
+  <h2 style="font-family: 'Poppins', cursive; color: #ff4d6d; font-size: 2.2rem;">🕰️Anılarımız</h2>
   <ul id="timeline-list">
     <!-- Anılar buraya eklenecek -->
   </ul>
@@ -606,7 +644,7 @@ button, img, a {
 
   <!-- Fotoğraf Galerisi -->
   <section class="gallery-section">
-  <h2>☀️ Hanım</h2>
+  <h2 style="font-family: 'Poppins', cursive; color: #ff4d6d; font-size: 2.2rem;">☀️Hanım</h2>
   <div class="gallery-wrapper">
     <button class="scroll-btn left" onclick="scrollGallery('photoGallery', -1)">⬅</button>
     <div class="scroll-gallery" id="photoGallery">
@@ -621,7 +659,7 @@ button, img, a {
 
 <!-- Birlikte Fotoğraf Galerisi -->
   <section class="gallery-section">
-  <h2>👩‍❤️‍👨 US</h2>
+  <h2 style="font-family: 'Poppins', cursive; color: #ff4d6d; font-size: 2.2rem;">❤️‍🔥US</h2>
   <div class="gallery-wrapper">
     <button class="scroll-btn left" onclick="scrollGallery('photoGallery2', -1)">⬅</button>
     <div class="scroll-gallery" id="photoGallery2">
@@ -640,8 +678,8 @@ button, img, a {
 
   <!-- Bonus Video Galerisi -->
   <section class="bonus-section">
-  <h2>🎁 Bonus Video Galerisi</h2>
-  <p class="bonus-message">Sana özel videolarım ❤️</p>
+  <h2 style="font-family: 'Poppins', cursive; color: #ff4d6d; font-size: 2.2rem;">🪶Lovepoem</h2>
+
   <div class="gallery-wrapper">
     <button class="scroll-btn left" onclick="scrollGallery('videoGallery', -1)">⬅</button>
     <div class="scroll-gallery" id="videoGallery">
@@ -765,7 +803,7 @@ document.querySelector(".secret-button").addEventListener("click", () => {
     { tarih: "16 Mart 2025", aciklama: "İlk öpücük 💋" },
     { tarih: "3 Haziran 2025", aciklama: "Work & Travel ✈️" },
     { tarih: "10 Ekim 2025", aciklama: "Büyük Kavuşma Günü 💞" },
-    { tarih: "14 Şubat 2026", aciklama: "İlk Sevgililer Günümüz 💘" },
+    { tarih: "____________", aciklama: "Bana Aşık Olduğun Gün 🔜" },
 
   ];
 
