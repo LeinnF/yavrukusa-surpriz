@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+<link rel="icon" href="fotoğraflar/favicon.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mini Hikaye</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Cursive:wght@400..700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(#fff0f5, #ffe6f0);
+      font-family: 'Edu NSW ACT Cursive', cursive;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .kitap-kapsayici {
+      background: #fff;
+      width: 90%;
+      max-width: 700px;
+      padding: 40px;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+      border-radius: 16px;
+      border: 2px solid #ffb6c1;
+      text-align: center;
+      position: relative;
+    }
+
+    .kitap-kapsayici::before,
+    .kitap-kapsayici::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 10px;
+      background: #ffb6c1;
+    }
+
+    .kitap-kapsayici::before {
+      left: -10px;
+    }
+
+    .kitap-kapsayici::after {
+      right: -10px;
+    }
+
+    .hikaye-metin {
+      font-size: 1.3rem;
+      line-height: 1.8;
+      color: #b3366b;
+      text-align: justify;
+      opacity: 0;
+      animation: fadeIn 2s ease-in forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="kitap-kapsayici">
+    <div class="hikaye-metin" id="hikayeMetin"></div>
+    <audio id="hikayeSes" src="ses/hikaye.mp3" autoplay loop></audio>
+  </div>
+
+  <script>
+    const hikayeler = [
+      `Bir zamanlar, pamuk bulutların üzerinde kurulmuş gizli bir şehirde, Şebek adında neşeli bir çocuk yaşarmış. Bu Şebek öyle hareketli, öyle enerjikmiş ki, onun geçtiği yerde sıkıntı duramaz, her şey kahkahaya dönüşürmüş. Ama kalbinde hep bir boşluk varmış. Ta ki... bir gün gökyüzünden yere, minicik kanatlarıyla bir Yavrukuş inene kadar. 🌤️
+
+Yavrukuş’un adı Dilara’ymış. Uysal, zarif ama bir o kadar da cesurmuş. Şebek onu ilk gördüğünde içinden sadece şu geçmiş:
+
+“İşte bu, benim kalbimin tamamlayıcısı…”
+
+Göz göze geldikleri ilk an, dünya durmuş gibi olmuş. Sonra bir kahkaha... bir gıdıklama... ve bir “Ham!” sesiyle başlamış onların öyküsü.
+
+Günler geçmiş, gökyüzüne notlar yazmışlar. Yıldızları sayarken hayaller kurmuşlar. Birlikte bulutların üzerinde sekerek şarkılar söylemiş, düşlerde oyunlar oynamışlar. Şebek her sabah Yavrukuş’un kanatlarına sarılıp uyanmış, Yavrukuş ise her akşam Şebek’in gözlerindeki çocuksu neşeye bakıp huzur bulmuş.
+
+Ama bir gün, Yavrukuş uzaklara gitmek zorunda kalmış. Şebek üzülmüş ama biliyormuş ki, onların kalpleri artık aynı ritimde atıyormuş. Ve o günden sonra her gece gökyüzüne bakıp şöyle demiş:
+
+“Ne kadar uzak olsak da, aynı aya bakıyoruz sevgilim…” 🌙
+
+Ve işte o anda, gökyüzünde kalpten bir iz belirmiş. Kimse görmemiş ama ikisi bilmiş. Çünkü o iz, onların sevgisinin ta kendisiymiş...`,
+
+
+      `Günlerden bir gün, Yavrukuş bir çiçek tarlasında hayal kuruyormuş. Şebek ise uzaklardan onu düşünürken yıldızlara bir dilek fısıldamış: \"Ona her gün gülümseme sebebi olmak istiyorum.\" Aynı anda Yavrukuş'un kalbi sıcacık olmuş. İşte sevgi böyle bir büyüymüş, birini düşündüğünde onun kalbine dokunabilmekmiş.`,
+
+      `Bir akşamüstü, pembe bulutların altında rüyalarında buluşmuşlar. Şebek, Yavrukuş'a gizlice sakladığı minik bir not uzatmış: \"Sen güldüğünde, dünya daha güzel bir yer oluyor.\" O andan sonra dünya dönmeyi biraz daha keyifle sürdürmüş.`
+    ];
+
+    const rastgeleHikaye = hikayeler[Math.floor(Math.random() * hikayeler.length)];
+    const hedef = document.getElementById("hikayeMetin");
+    let i = 0;
+
+    function yaz() {
+      if (i < rastgeleHikaye.length) {
+        hedef.textContent += rastgeleHikaye.charAt(i);
+        i++;
+        setTimeout(yaz, 50);
+      }
+    }
+
+    yaz();
+  </script>
+</body>
+</html>
