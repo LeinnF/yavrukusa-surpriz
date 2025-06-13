@@ -676,14 +676,14 @@ button, img, a {
   <section class="gallery-section">
   <h2 style="font-family: 'Poppins', cursive; color: #ff4d6d; font-size: 2.2rem;">☀️Hanım</h2>
   <div class="gallery-wrapper">
-    <button class="scroll-btn left" onclick="scrollGallery('photoGallery', -1)">⬅</button>
+    <button class="scroll-btn left" onclick="scrollGallery('photoGallery', -1)">⮜</button>
     <div class="scroll-gallery" id="photoGallery">
       <!-- fotoğraflar -->
       <img src="fotoğraflar/foto5.jpg" alt="Foto 5" />
       <img src="fotoğraflar/foto6.jpg" alt="Foto 6" />
       <!-- diğer fotoğraflar -->
     </div>
-    <button class="scroll-btn right" onclick="scrollGallery('photoGallery', 1)">➡</button>
+    <button class="scroll-btn right" onclick="scrollGallery('photoGallery', 1)">⮞</button>
   </div>
 </section>
 
@@ -691,7 +691,7 @@ button, img, a {
   <section class="gallery-section">
   <h2 style="font-family: 'Poppins', cursive; color: #ff4d6d; font-size: 2.2rem;">❤️‍🔥US</h2>
   <div class="gallery-wrapper">
-    <button class="scroll-btn left" onclick="scrollGallery('photoGallery2', -1)">⬅</button>
+    <button class="scroll-btn left" onclick="scrollGallery('photoGallery2', -1)">⮜</button>
     <div class="scroll-gallery" id="photoGallery2">
       <!-- fotoğraflar -->
       <img src="fotoğraflar/foto1.jpg" alt="Foto 1" />
@@ -701,27 +701,27 @@ button, img, a {
       <img src="fotoğraflar/foto7.jpg" alt="Foto 7" />
       <!-- diğer fotoğraflar -->
     </div>
-    <button class="scroll-btn right" onclick="scrollGallery('photoGallery2', 1)">➡</button>
+    <button class="scroll-btn right" onclick="scrollGallery('photoGallery2', 1)">⮞</button>
   </div>
 </section>
 
 
-  <!-- Bonus Video Galerisi -->
+  <!-- Şiir Bölümü -->
   <section class="bonus-section">
   <h2 style="font-family: 'Poppins', cursive; color: #ff4d6d; font-size: 2.2rem;">🪶Lovepoem</h2>
 
   <div class="gallery-wrapper">
-    <button class="scroll-btn left" onclick="scrollGallery('videoGallery', -1)">⬅</button>
+    <button class="scroll-btn left" onclick="scrollGallery('videoGallery', -1)">⮜</button>
     <div class="scroll-gallery" id="videoGallery">
-      <video controls preload="metadata" poster="bonus-videolar/video1-poster.jpg">
-        <source src="bonus-videolar/video1.mp4" type="video/mp4" />
+      <video controls preload="metadata" poster="lovepoem/1.jpg">
+        <source src="lovepoem/1.mp4" type="video/mp4" />
       </video>
       <video controls preload="metadata" poster="bonus-videolar/video2-poster.jpg">
         <source src="bonus-videolar/video2.mp4" type="video/mp4" />
       </video>
       <!-- Yeni videoları bu yapıya uygun ekleyebilirsin -->
     </div>
-    <button class="scroll-btn right" onclick="scrollGallery('videoGallery', 1)">➡</button>
+    <button class="scroll-btn right" onclick="scrollGallery('videoGallery', 1)">⮞</button>
   </div>
 </section>
 
@@ -881,111 +881,91 @@ document.querySelector(".secret-button").addEventListener("click", () => {
 
 
   const photoGallery = document.getElementById('photoGallery');
-  const photoGallery2 = document.getElementById('photoGallery2');
-  const videoGallery = document.getElementById('videoGallery');
+const photoGallery2 = document.getElementById('photoGallery2');
 
-  const modal = document.getElementById('mediaModal');
-  const modalImage = document.getElementById('modalImage');
-  const modalVideo = document.getElementById('modalVideo');
-  const closeBtn = modal.querySelector('.close');
-  const prevBtn = modal.querySelector('.prev');
-  const nextBtn = modal.querySelector('.next');
+const modal = document.getElementById('mediaModal');
+const modalImage = document.getElementById('modalImage');
+const closeBtn = modal.querySelector('.close');
+const prevBtn = modal.querySelector('.prev');
+const nextBtn = modal.querySelector('.next');
 
-  let currentIndex = 0;
-  let currentGallery = null;
+let currentIndex = 0;
+let currentGallery = null;
 
-  const photos1 = Array.from(photoGallery.querySelectorAll('img'));
-  const photos2 = Array.from(photoGallery2.querySelectorAll('img'));
-  const videos = Array.from(videoGallery.querySelectorAll('video'));
+const photos1 = Array.from(photoGallery.querySelectorAll('img'));
+const photos2 = Array.from(photoGallery2.querySelectorAll('img'));
 
-  function openModal(type, index) {
-    currentGallery = type;
-    currentIndex = index;
-    modal.style.display = 'flex';
+// Modal sadece fotoğraflar için açılıyor, video modalı kaldırıldı
+function openModal(type, index) {
+  currentGallery = type;
+  currentIndex = index;
+  modal.style.display = 'flex';
 
-    if (type === 'photo1') {
-      modalVideo.style.display = 'none';
-      modalVideo.pause();
-      modalImage.style.display = 'block';
-      modalImage.src = photos1[index].src;
-      modalImage.alt = photos1[index].alt;
-    } else if (type === 'photo2') {
-      modalVideo.style.display = 'none';
-      modalVideo.pause();
-      modalImage.style.display = 'block';
-      modalImage.src = photos2[index].src;
-      modalImage.alt = photos2[index].alt;
-    } else if (type === 'video') {
-      modalImage.style.display = 'none';
-      modalVideo.style.display = 'block';
-      modalVideo.src = videos[index].querySelector('source').src;
-      modalVideo.load();
-      modalVideo.play();
-    }
+  modalImage.style.display = 'block';
+  modalImage.src = (type === 'photo1' ? photos1[index].src : photos2[index].src);
+  modalImage.alt = (type === 'photo1' ? photos1[index].alt : photos2[index].alt);
+}
+
+function closeModal() {
+  modal.style.display = 'none';
+}
+
+function showNext() {
+  if (currentGallery === 'photo1') {
+    currentIndex = (currentIndex + 1) % photos1.length;
+    modalImage.src = photos1[currentIndex].src;
+    modalImage.alt = photos1[currentIndex].alt;
+  } else if (currentGallery === 'photo2') {
+    currentIndex = (currentIndex + 1) % photos2.length;
+    modalImage.src = photos2[currentIndex].src;
+    modalImage.alt = photos2[currentIndex].alt;
   }
+}
 
-  function closeModal() {
-    modal.style.display = 'none';
-    modalVideo.pause();
-    modalVideo.src = '';
+function showPrev() {
+  if (currentGallery === 'photo1') {
+    currentIndex = (currentIndex - 1 + photos1.length) % photos1.length;
+    modalImage.src = photos1[currentIndex].src;
+    modalImage.alt = photos1[currentIndex].alt;
+  } else if (currentGallery === 'photo2') {
+    currentIndex = (currentIndex - 1 + photos2.length) % photos2.length;
+    modalImage.src = photos2[currentIndex].src;
+    modalImage.alt = photos2[currentIndex].alt;
   }
+}
 
-  function showNext() {
-    if (currentGallery === 'photo1') {
-      currentIndex = (currentIndex + 1) % photos1.length;
-      modalImage.src = photos1[currentIndex].src;
-    } else if (currentGallery === 'photo2') {
-      currentIndex = (currentIndex + 1) % photos2.length;
-      modalImage.src = photos2[currentIndex].src;
-    } else if (currentGallery === 'video') {
-      currentIndex = (currentIndex + 1) % videos.length;
-      modalVideo.src = videos[currentIndex].querySelector('source').src;
-      modalVideo.load();
-      modalVideo.play();
-    }
+// Fotoğraflara tıklayınca modal aç
+photos1.forEach((img, i) => {
+  img.style.cursor = 'pointer';
+  img.addEventListener('click', () => openModal('photo1', i));
+});
+
+photos2.forEach((img, i) => {
+  img.style.cursor = 'pointer';
+  img.addEventListener('click', () => openModal('photo2', i));
+});
+
+// Videolara modal açma, sadece normal oynat
+// Eğer istersen aşağıdaki event listener'ı da kaldırabilirsin
+const videos = document.querySelectorAll('#videoGallery video');
+videos.forEach(vid => {
+  vid.style.cursor = 'default'; 
+  // Tıklama ile modal açılmaz, sadece oynatılır
+  vid.removeEventListener('click', () => {}); // Önceki varsa kaldır
+});
+
+// Modal kapatma ve navigasyon
+closeBtn.addEventListener('click', closeModal);
+nextBtn.addEventListener('click', showNext);
+prevBtn.addEventListener('click', showPrev);
+
+// Modal dışına tıklayınca kapat
+window.addEventListener('click', (e) => {
+  if (e.target === modal) {
+    closeModal();
   }
+});
 
-  function showPrev() {
-    if (currentGallery === 'photo1') {
-      currentIndex = (currentIndex - 1 + photos1.length) % photos1.length;
-      modalImage.src = photos1[currentIndex].src;
-    } else if (currentGallery === 'photo2') {
-      currentIndex = (currentIndex - 1 + photos2.length) % photos2.length;
-      modalImage.src = photos2[currentIndex].src;
-    } else if (currentGallery === 'video') {
-      currentIndex = (currentIndex - 1 + videos.length) % videos.length;
-      modalVideo.src = videos[currentIndex].querySelector('source').src;
-      modalVideo.load();
-      modalVideo.play();
-    }
-  }
-
-  // Event Listeners
-  photos1.forEach((img, i) => {
-    img.style.cursor = 'pointer';
-    img.addEventListener('click', () => openModal('photo1', i));
-  });
-
-  photos2.forEach((img, i) => {
-    img.style.cursor = 'pointer';
-    img.addEventListener('click', () => openModal('photo2', i));
-  });
-
-  videos.forEach((vid, i) => {
-    vid.style.cursor = 'pointer';
-    vid.addEventListener('click', () => openModal('video', i));
-  });
-
-  closeBtn.addEventListener('click', closeModal);
-  nextBtn.addEventListener('click', showNext);
-  prevBtn.addEventListener('click', showPrev);
-
-  // Kapatmak için boşluğa tıklama
-  window.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      closeModal();
-    }
-  });
 
 
 
