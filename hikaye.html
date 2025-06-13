@@ -2,12 +2,12 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-<link rel="icon" href="fotoğraflar/favicon.png" type="image/png">
+  <link rel="icon" href="fotoğraflar/favicon.png" type="image/png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mini Hikaye</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Cursive:wght@400..700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Cursive:wght@400..700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
@@ -18,6 +18,7 @@
       align-items: center;
       justify-content: center;
       min-height: 100vh;
+      position: relative;
     }
 
     .kitap-kapsayici {
@@ -30,6 +31,7 @@
       border: 2px solid #ffb6c1;
       text-align: center;
       position: relative;
+      z-index: 1;
     }
 
     .kitap-kapsayici::before,
@@ -64,15 +66,38 @@
         opacity: 1;
       }
     }
+
+    /* Müzik butonu için stil */
+    #musicToggleBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #ffb6c1;
+      border: none;
+      border-radius: 25px;
+      padding: 10px 20px;
+      font-family: 'Edu NSW ACT Cursive', cursive;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(179,54,107,0.3);
+      z-index: 10;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+
+    #musicToggleBtn:hover {
+      background-color: #e695ac;
+    }
   </style>
 </head>
 <body>
   <div class="kitap-kapsayici">
     <div class="hikaye-metin" id="hikayeMetin"></div>
-    <audio id="hikayeSes" src="muzik/hikaye.mp3" autoplay loop></audio>
   </div>
 
-  <audio id="backgroundMusic" src="muzik/hikaye.mp3" loop autoplay></audio>
+  <audio id="backgroundMusic" src="muzik/hikaye.mp3" loop></audio>
+
+  <button id="musicToggleBtn">🎵 Müziği Aç</button>
 
   <script>
     const hikayeler = [
@@ -92,15 +117,12 @@ Ama bir gün, Yavrukuş uzaklara gitmek zorunda kalmış. Şebek üzülmüş ama
 
 Ve işte o anda, gökyüzünde kalpten bir iz belirmiş. Kimse görmemiş ama ikisi bilmiş. Çünkü o iz, onların sevgisinin ta kendisiymiş...`,
 
-
-
-      `Günlerden bir gün, Yavrukuş bir çiçek tarlasında hayal kuruyormuş. Şebek ise uzaklardan onu düşünürken yıldızlara bir dilek fısıldamış: \"Ona her gün gülümseme sebebi olmak istiyorum.\" Aynı anda Yavrukuş'un kalbi sıcacık olmuş. İşte sevgi böyle bir büyüymüş, birini düşündüğünde onun kalbine dokunabilmekmiş.`,
-
-
+      `Günlerden bir gün, Yavrukuş bir çiçek tarlasında hayal kuruyormuş. Şebek ise uzaklardan onu düşünürken yıldızlara bir dilek fısıldamış: "Ona her gün gülümseme sebebi olmak istiyorum." Aynı anda Yavrukuş'un kalbi sıcacık olmuş. İşte sevgi böyle bir büyüymüş, birini düşündüğünde onun kalbine dokunabilmekmiş.`,
 
       `Şebek ve Yavrukuş, uzun bir günün ardından evde otururken, eski fotoğraflarına bakmışlar. İlk çekildikleri anı hatırlayıp gülümsemişler. Her fotoğraf, birlikte geçirilen zamanın küçük bir hazinesiymiş. Şebek, Yavrukuş'un saçlarını okşayıp “İyi ki varsın” demiş. Yavrukuş gözlerini kapatıp kalbinin hızla çarptığını hissetmiş. O an anlamışlar ki; gerçek mutluluk, büyük anlarda değil, küçük ve sıradan anlarda saklıymış. Ve o gece, yıldızlar onlara nazar boncuğu gibi parlamış.`
     ];
 
+    // Yazı makinesi efekti
     const rastgeleHikaye = hikayeler[Math.floor(Math.random() * hikayeler.length)];
     const hedef = document.getElementById("hikayeMetin");
     let i = 0;
@@ -115,10 +137,23 @@ Ve işte o anda, gökyüzünde kalpten bir iz belirmiş. Kimse görmemiş ama ik
 
     yaz();
 
+    // Müzik butonu kontrolü
+    const music = document.getElementById('backgroundMusic');
+    const btn = document.getElementById('musicToggleBtn');
 
+    music.volume = 0.15;  // Ses seviyesi düşük
 
-
-
+    btn.addEventListener('click', () => {
+      if (music.paused) {
+        music.play().catch(() => {
+          // Oynatma engellenirse sessiz başlat
+        });
+        btn.textContent = '🔇 Müziği Kapat';
+      } else {
+        music.pause();
+        btn.textContent = '🎵 Müziği Aç';
+      }
+    });
   </script>
 </body>
 </html>
