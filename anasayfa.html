@@ -1,0 +1,935 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <link rel="icon" href="fotoğraflar/favicon.png" type="image/png">
+  <title>Yavrukuş'a</title>
+  <style>
+
+
+    :root {
+      --primary: #ff8fa3;
+      --secondary: #ffe6ec;
+      --text: #4b2c2c;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, var(--secondary), #fff0f5);
+      color: var(--text);
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 30px;
+      font-size: 2.4em;
+      color: var(--primary);
+    }
+    h2 {
+      margin-top: 40px;
+      color: var(--primary);
+    }
+    .scroll-gallery {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      padding: 10px 20px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .scroll-gallery img,
+    .scroll-gallery video {
+      flex: 0 0 auto;
+      width: 250px;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      scroll-snap-align: start;
+      transition: transform 0.3s ease;
+    }
+    .scroll-gallery img:hover,
+    .scroll-gallery video:hover {
+      transform: scale(1.05);
+    }
+    .scroll-gallery::-webkit-scrollbar {
+      height: 8px;
+    }
+    .scroll-gallery::-webkit-scrollbar-thumb {
+      background: #d8a7b1;
+      border-radius: 4px;
+    }
+    .bonus-message {
+      margin-bottom: 10px;
+      font-style: italic;
+    }
+    .music-section iframe {
+      margin-top: 10px;
+      width: 300px;
+      height: 170px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+    .countdown {
+      margin-top: 20px;
+      font-size: 1.5rem;
+      color: #8c3b50;
+    }
+    .gallery-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 90vw;
+  margin: auto;
+}
+
+.scroll-btn {
+  background: var(--primary);
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  padding: 10px 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: background 0.3s;
+}
+
+.scroll-btn:hover {
+  background: #d6647a;
+}
+
+    .kalp-yazisi {
+  margin-top: 30px;
+  overflow: hidden;
+  height: 150px;
+}
+
+/* Mobil cihazlar için (max-width: 600px) */
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+  h1 {
+    font-size: 1.8em;
+  }
+  h2 {
+    font-size: 1.4em;
+  }
+  .scroll-gallery img,
+  .scroll-gallery video {
+    width: 180px;
+    height: auto;
+  }
+  .music-section iframe {
+    width: 100%;
+    height: 180px;
+  }
+  .countdown {
+    font-size: 1.2rem;
+  }
+}
+
+/* Tablet cihazlar için (601px - 900px) */
+@media (min-width: 601px) and (max-width: 900px) {
+  body {
+    font-size: 16px;
+  }
+  h1 {
+    font-size: 2em;
+  }
+  h2 {
+    font-size: 1.6em;
+  }
+  .scroll-gallery img,
+  .scroll-gallery video {
+    width: 220px;
+    height: auto;
+  }
+  .music-section iframe {
+    width: 320px;
+    height: 180px;
+  }
+}
+
+.bonus-secret {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.secret-button {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  border-radius: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: background 0.3s ease;
+}
+
+.secret-button:hover {
+  background-color: #ff6d8a;
+}
+
+.animated-message {
+  display: none;
+  margin-top: 20px;
+  font-size: 1.1rem;
+  color: #6a1b2d;
+  animation: fadeInText 2s ease forwards;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@keyframes fadeInText {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+
+
+
+  .timeline-section {
+    padding: 40px 20px;
+    background: #fff0f5;
+    border-radius: 16px;
+    margin: 40px auto;
+    width: 90%;
+    max-width: 700px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    text-align: center;
+  }
+
+  #timeline-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 20px;
+  }
+
+  #timeline-list li {
+    margin: 10px 0;
+    font-size: 1.1rem;
+    opacity: 1;
+    transition: all 0.3s ease;
+  }
+
+  #timeline-list li.hidden {
+    display: none;
+  }
+
+  #toggle-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #ff8fa3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+
+  #toggle-button:hover {
+    background-color: #e56b84;
+  }
+
+
+/* Kalp Buton */
+#muzik-kalp-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #ff8fa3;
+  color: white;
+  border: none;
+  font-size: 24px;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  cursor: pointer;
+  z-index: 100;
+  transition: transform 0.3s ease;
+}
+
+#muzik-kalp-btn:hover {
+  transform: scale(1.1);
+background-color: #e56b84;
+}
+
+
+/* Müzik Popup */
+#muzik-popup {
+  position: fixed;
+  bottom: 90px;
+  right: 30px;
+  background: #ffe6ec;
+  color: #8c3b50;
+  padding: 10px 16px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 99;
+  transition: opacity 0.3s ease;
+}
+.hidden {
+  display: none;
+}
+
+/* Uçan Sembolleri Aç/Kapat Butonu - Sol Alt */
+#sembol-toggle {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: #ff8fa3;
+  color: white; /* Değiştirildi */
+  border: none;
+  font-size: 24px; /* Müzik butonuna eşitlendi */
+  border-radius: 50%;
+  width: 60px;  /* Eşit boyut */
+  height: 60px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  transition: transform 0.3s ease;
+}
+
+#sembol-toggle:hover {
+  transform: scale(1.1);
+  background-color: #e56b84; /* Hover rengi müzik butonuyla eşlendi */
+}
+
+#kalp-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+.kalp {
+  position: absolute;
+  color: #ff8fa3;
+  font-size: 24px;
+  animation: ucarKalp 4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes ucarKalp {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) scale(1.5);
+    opacity: 0;
+  }
+}
+
+
+
+#mediaModal {
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#modalImage, #modalVideo {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.close, .prev, .next {
+  position: absolute;
+  top: 50%;
+  color: white;
+  font-size: 40px;
+  cursor: pointer;
+  user-select: none;
+  z-index: 10000;
+}
+
+.close {
+  top: 20px;
+  right: 30px;
+  font-size: 45px;
+}
+
+.prev {
+  left: 20px;
+}
+
+.next {
+  right: 20px;
+}
+
+
+
+.timeline {
+  max-width: 800px;
+  margin: 100px auto;
+  padding: 0 20px;
+  position: relative;
+}
+
+.timeline-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 60px;
+  font-family: 'Dancing Script', cursive;
+  color: #ff4d6d;
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 40px;
+  margin-bottom: 40px;
+  border-left: 3px solid #ff4d6d;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  background-color: #ff4d6d;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px #ffe3eb;
+}
+
+.timeline-date {
+  font-weight: bold;
+  color: #ff4d6d;
+  margin-bottom: 5px;
+  font-size: 1.1rem;
+}
+
+.timeline-content {
+  background: #fff0f5;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(255, 77, 109, 0.2);
+  animation: fadeUp 0.8s ease both;
+  font-size: 1rem;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  } to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 📱 Mobil Uyum - 768px altı ekranlar için */
+@media screen and (max-width: 768px) {
+  .timeline {
+    padding: 0 10px;
+  }
+
+  .timeline-title {
+    font-size: 2rem;
+    margin-bottom: 40px;
+  }
+
+  .timeline-item {
+    padding-left: 25px;
+  }
+
+  .timeline-item::before {
+    width: 12px;
+    height: 12px;
+    left: -6px;
+    box-shadow: 0 0 0 3px #ffe3eb;
+  }
+
+  .timeline-date {
+    font-size: 1rem;
+  }
+
+  .timeline-content {
+    font-size: 0.95rem;
+    padding: 12px 16px;
+  }
+}
+
+
+
+
+.mini-oyun-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  color: white;
+  background-color: #ff8fa3;
+  border-radius: 16px;
+  text-decoration: none;
+  font-family: 'Comic Sans MS', cursive;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.mini-oyun-btn:hover {
+  background-color: #ff8fa3;
+  transform: scale(1.05);
+}
+
+
+
+
+
+
+
+  </style>
+</head>
+<body>
+  
+  <h1>Şebekten Yavrukuşuna 💖</h1>
+
+  <div class="kalp-yazisi">
+  <svg viewBox="0 0 600 200" width="100%" height="150">
+    <path id="kalp-yolu" fill="none" stroke="none" d="M10,100 
+      Q150,-50 300,100 
+      T590,100" />
+    <text font-size="24" fill="#ff5c8a" font-family="'Dancing Script', cursive">
+      <textPath href="#kalp-yolu" startOffset="0%">
+        <animate attributeName="startOffset" from="0%" to="100%" dur="10s" repeatCount="indefinite" />
+        Seni çok seviyorum aşkadınımmm 💖
+      </textPath>
+    </text>
+  </svg>
+</div>
+
+
+  <!-- Tarih Sayacı -->
+  <section class="countdown-section">
+    <h2>🎯 Sana Kavuşmama Kalan Süre</h2>
+    <p class="countdown" id="countdown"></p>
+  </section>
+
+
+<!-- Uçan Kalpleri Aç/Kapat Butonu -->
+<button id="sembol-toggle" onclick="toggleKalpler()">✨</button>
+
+<!-- Uçan Kalplerin Olacağı Konteyner -->
+<div id="kalp-container"></div>
+
+
+
+
+
+
+<!-- YOUTUBE ŞARKI BÖLÜMÜNÜ ŞİMDİLİK KALDIRDIM YT VİDEOLARINI OYNATMIYOR -->
+  <!-- Şarkı Köşesi 
+  <section class="music-section">
+    <h2>🎵 Haftanın Şarkısı</h2>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/qbS3ZUTfj-o?si=KZbU8mkkuZI7dYLC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </section> -->
+	
+
+
+<div class="bonus-secret">
+  <button class="secret-button">💖 Bana Tıkla!</button>
+  <div class="animated-message" id="duygusalMesaj">
+    <span id="mesajMetni"></span>
+  </div>
+</div>
+
+<!-- Sağ altta müzik butonu -->
+<button id="muzik-kalp-btn" onclick="toggleMuzik()">🎧</button>
+
+<!-- Müzik popup bildirimi -->
+<div id="muzik-popup" class="hidden">
+  <p>🎧 Müzik açık!</p>
+</div>
+
+<!-- Arka plan müzik dosyası -->
+<audio id="bg-music" loop>
+  <source src="muzik/fon.mp3" type="audio/mpeg" />
+</audio>
+
+
+
+
+<section class="timeline-section">
+  <h2>🕰️ Anılarımız</h2>
+  <ul id="timeline-list">
+    <!-- Anılar buraya eklenecek -->
+  </ul>
+  <button id="toggle-button">Daha Fazla Göster ⬇️</button>
+</section>
+
+
+
+<a href="oyun.html" class="mini-oyun-btn" target="_blank">🎮 Mini Oyun</a>
+
+
+
+
+
+
+
+  <!-- Fotoğraf Galerisi -->
+  <section class="gallery-section">
+  <h2>☀️ Hanım</h2>
+  <div class="gallery-wrapper">
+    <button class="scroll-btn left" onclick="scrollGallery('photoGallery', -1)">⬅</button>
+    <div class="scroll-gallery" id="photoGallery">
+      <!-- fotoğraflar -->
+      <img src="fotoğraflar/foto5.jpg" alt="Foto 5" />
+      <img src="fotoğraflar/foto6.jpg" alt="Foto 6" />
+      <!-- diğer fotoğraflar -->
+    </div>
+    <button class="scroll-btn right" onclick="scrollGallery('photoGallery', 1)">➡</button>
+  </div>
+</section>
+
+<!-- Birlikte Fotoğraf Galerisi -->
+  <section class="gallery-section">
+  <h2>👩‍❤️‍👨 US</h2>
+  <div class="gallery-wrapper">
+    <button class="scroll-btn left" onclick="scrollGallery('photoGallery2', -1)">⬅</button>
+    <div class="scroll-gallery" id="photoGallery2">
+      <!-- fotoğraflar -->
+      <img src="fotoğraflar/foto1.jpg" alt="Foto 1" />
+      <img src="fotoğraflar/foto2.jpg" alt="Foto 2" />
+      <img src="fotoğraflar/foto3.jpg" alt="Foto 3" />
+      <img src="fotoğraflar/foto4.jpg" alt="Foto 4" />
+      <img src="fotoğraflar/foto7.jpg" alt="Foto 7" />
+      <!-- diğer fotoğraflar -->
+    </div>
+    <button class="scroll-btn right" onclick="scrollGallery('photoGallery2', 1)">➡</button>
+  </div>
+</section>
+
+
+  <!-- Bonus Video Galerisi -->
+  <section class="bonus-section">
+  <h2>🎁 Bonus Video Galerisi</h2>
+  <p class="bonus-message">Sana özel videolarım ❤️</p>
+  <div class="gallery-wrapper">
+    <button class="scroll-btn left" onclick="scrollGallery('videoGallery', -1)">⬅</button>
+    <div class="scroll-gallery" id="videoGallery">
+      <video controls preload="metadata" poster="bonus-videolar/video1-poster.jpg">
+        <source src="bonus-videolar/video1.mp4" type="video/mp4" />
+      </video>
+      <video controls preload="metadata" poster="bonus-videolar/video2-poster.jpg">
+        <source src="bonus-videolar/video2.mp4" type="video/mp4" />
+      </video>
+      <!-- Yeni videoları bu yapıya uygun ekleyebilirsin -->
+    </div>
+    <button class="scroll-btn right" onclick="scrollGallery('videoGallery', 1)">➡</button>
+  </div>
+</section>
+
+<!-- Modal -->
+<div id="mediaModal" class="modal">
+  <span class="close">&times;</span>
+  <div class="modal-content">
+    <img id="modalImage" src="" alt="" style="display:none; max-width: 90vw; max-height: 90vh;"/>
+    <video id="modalVideo" controls style="display:none; max-width: 90vw; max-height: 90vh;"></video>
+  </div>
+  <a class="prev">&#10094;</a>
+  <a class="next">&#10095;</a>
+</div>
+
+
+
+
+
+
+
+  <script>
+  let kalplerAktif = false;
+  let kalpInterval;
+
+  function toggleKalpler() {
+    const container = document.getElementById("kalp-container");
+
+    if (!kalplerAktif) {
+      kalplerAktif = true;
+      kalpInterval = setInterval(() => {
+        const kalp = document.createElement("div");
+        kalp.classList.add("kalp");
+        kalp.style.left = Math.random() * 100 + "vw";
+        kalp.style.top = "100vh";
+        kalp.textContent = ["💖", "💕", "💘", "💝", "💗"][Math.floor(Math.random() * 5)];
+        container.appendChild(kalp);
+        setTimeout(() => kalp.remove(), 4000);
+      }, 300);
+    } else {
+      kalplerAktif = false;
+      clearInterval(kalpInterval);
+    }
+  }
+
+
+
+
+
+
+
+
+    const countdown = document.getElementById("countdown");
+    const targetDate = new Date("2025-10-10T00:00:00");
+    function updateCountdown() {
+      const now = new Date();
+      const diff = targetDate - now;
+      if (diff <= 0) {
+        countdown.textContent = "Artık birlikteyiz! 💖";
+        return;
+      }
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / 1000 / 60) % 60);
+      countdown.textContent = `${days} gün ${hours} saat ${minutes} dakika`;
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    function scrollGallery(id, direction) {
+  const container = document.getElementById(id);
+  const scrollAmount = 270; // resim/video genişliği + gap
+  container.scrollBy({
+    left: direction * scrollAmount,
+    behavior: 'smooth'
+  });
+}
+
+
+const mesajlar = [
+  "Seni düşündüğüm her saniye kalbim hızlanıyor... 💖",
+  "Her sabah seninle uyanmak hayalim... ☀️",
+  "Gülüşün dünyadaki en güzel melodi... 🎶",
+  "Mesafeler sadece rakam, kalbim hep yanında... 💌",
+  "Sana her baktığımda iyi ki diyorum... 🌷",
+  "Gözlerinle başlıyor günüm, aklımdasın... 🌙",
+  "Seninle her günüm özel 💞",
+  "Sesini duymak bile yetiyor mutlu olmama 💖",
+  "Gözlerin dünyamı aydınlatıyor 🌟",
+  "Özlemek bile güzel çünkü seni seviyorum 💘"
+];
+
+document.querySelector(".secret-button").addEventListener("click", () => {
+  const randomIndex = Math.floor(Math.random() * mesajlar.length);
+  const mesaj = mesajlar[randomIndex];
+
+  const mesajKutusu = document.getElementById("duygusalMesaj");
+  const mesajMetni = document.getElementById("mesajMetni");
+
+  mesajMetni.textContent = mesaj;
+  mesajKutusu.style.display = "block";
+  mesajKutusu.style.animation = "none";
+  void mesajKutusu.offsetWidth; // animasyonu sıfırlamak için
+  mesajKutusu.style.animation = "fadeInText 0.8s ease forwards";
+});
+
+
+
+  const anilar = [
+    { tarih: "16 Mart 2025", aciklama: "İlk öpücük 💋" },
+    { tarih: "3 Haziran 2025", aciklama: "Work & Travel ✈️" },
+    { tarih: "10 Ekim 2025", aciklama: "Büyük Kavuşma Günü 💞" },
+    { tarih: "14 Şubat 2026", aciklama: "İlk Sevgililer Günümüz 💘" },
+
+  ];
+
+  const timelineList = document.getElementById("timeline-list");
+
+  anilar.forEach((anı, index) => {
+    const li = document.createElement("li");
+    li.textContent = `${anı.tarih} - ${anı.aciklama}`;
+    if (index >= 3) li.classList.add("hidden");
+    timelineList.appendChild(li);
+  });
+
+  const toggleBtn = document.getElementById("toggle-button");
+  let gosteriliyor = false;
+
+  toggleBtn.addEventListener("click", () => {
+    gosteriliyor = !gosteriliyor;
+    document.querySelectorAll("#timeline-list li").forEach((li, index) => {
+      if (index >= 3) {
+        li.classList.toggle("hidden", !gosteriliyor);
+      }
+    });
+    toggleBtn.textContent = gosteriliyor ? "Daha Az Göster ⬆️" : "Daha Fazla Göster ⬇️";
+  });
+
+
+
+
+  const muzik = document.getElementById("bg-music");
+  const popup = document.getElementById("muzik-popup");
+  let muzikAcik = false;
+
+  function toggleMuzik() {
+    if (!muzikAcik) {
+      muzik.play();
+      popup.classList.remove("hidden");
+    } else {
+      muzik.pause();
+      popup.classList.add("hidden");
+    }
+    muzikAcik = !muzikAcik;
+  }
+
+
+
+
+  const photoGallery = document.getElementById('photoGallery');
+  const photoGallery2 = document.getElementById('photoGallery2');
+  const videoGallery = document.getElementById('videoGallery');
+
+  const modal = document.getElementById('mediaModal');
+  const modalImage = document.getElementById('modalImage');
+  const modalVideo = document.getElementById('modalVideo');
+  const closeBtn = modal.querySelector('.close');
+  const prevBtn = modal.querySelector('.prev');
+  const nextBtn = modal.querySelector('.next');
+
+  let currentIndex = 0;
+  let currentGallery = null;
+
+  const photos1 = Array.from(photoGallery.querySelectorAll('img'));
+  const photos2 = Array.from(photoGallery2.querySelectorAll('img'));
+  const videos = Array.from(videoGallery.querySelectorAll('video'));
+
+  function openModal(type, index) {
+    currentGallery = type;
+    currentIndex = index;
+    modal.style.display = 'flex';
+
+    if (type === 'photo1') {
+      modalVideo.style.display = 'none';
+      modalVideo.pause();
+      modalImage.style.display = 'block';
+      modalImage.src = photos1[index].src;
+      modalImage.alt = photos1[index].alt;
+    } else if (type === 'photo2') {
+      modalVideo.style.display = 'none';
+      modalVideo.pause();
+      modalImage.style.display = 'block';
+      modalImage.src = photos2[index].src;
+      modalImage.alt = photos2[index].alt;
+    } else if (type === 'video') {
+      modalImage.style.display = 'none';
+      modalVideo.style.display = 'block';
+      modalVideo.src = videos[index].querySelector('source').src;
+      modalVideo.load();
+      modalVideo.play();
+    }
+  }
+
+  function closeModal() {
+    modal.style.display = 'none';
+    modalVideo.pause();
+    modalVideo.src = '';
+  }
+
+  function showNext() {
+    if (currentGallery === 'photo1') {
+      currentIndex = (currentIndex + 1) % photos1.length;
+      modalImage.src = photos1[currentIndex].src;
+    } else if (currentGallery === 'photo2') {
+      currentIndex = (currentIndex + 1) % photos2.length;
+      modalImage.src = photos2[currentIndex].src;
+    } else if (currentGallery === 'video') {
+      currentIndex = (currentIndex + 1) % videos.length;
+      modalVideo.src = videos[currentIndex].querySelector('source').src;
+      modalVideo.load();
+      modalVideo.play();
+    }
+  }
+
+  function showPrev() {
+    if (currentGallery === 'photo1') {
+      currentIndex = (currentIndex - 1 + photos1.length) % photos1.length;
+      modalImage.src = photos1[currentIndex].src;
+    } else if (currentGallery === 'photo2') {
+      currentIndex = (currentIndex - 1 + photos2.length) % photos2.length;
+      modalImage.src = photos2[currentIndex].src;
+    } else if (currentGallery === 'video') {
+      currentIndex = (currentIndex - 1 + videos.length) % videos.length;
+      modalVideo.src = videos[currentIndex].querySelector('source').src;
+      modalVideo.load();
+      modalVideo.play();
+    }
+  }
+
+  // Event Listeners
+  photos1.forEach((img, i) => {
+    img.style.cursor = 'pointer';
+    img.addEventListener('click', () => openModal('photo1', i));
+  });
+
+  photos2.forEach((img, i) => {
+    img.style.cursor = 'pointer';
+    img.addEventListener('click', () => openModal('photo2', i));
+  });
+
+  videos.forEach((vid, i) => {
+    vid.style.cursor = 'pointer';
+    vid.addEventListener('click', () => openModal('video', i));
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  nextBtn.addEventListener('click', showNext);
+  prevBtn.addEventListener('click', showPrev);
+
+  // Kapatmak için boşluğa tıklama
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+
+
+// Mini oyun scripti
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+</body>
+</html>
