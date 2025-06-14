@@ -1073,40 +1073,16 @@ window.addEventListener('click', (e) => {
 
 
 
-  let deferredPrompt;
-  const installBtn = document.getElementById('installButton');
-  installBtn.style.display = 'none';
 
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    installBtn.style.display = 'block';
-
-    installBtn.addEventListener('click', () => {
-      installBtn.style.display = 'none';
-      deferredPrompt.prompt();
-      deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-          console.log('Kullanıcı yüklemeyi kabul etti.');
-        } else {
-          console.log('Kullanıcı yüklemeyi reddetti.');
-        }
-        deferredPrompt = null;
-      });
-    });
-  });
-
-
-
-
-
-<script>
   let deferredPrompt;
 
   window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    document.getElementById('installBanner').classList.remove('hidden');
+    // iOS desteklemediği için sadece Android'e özel
+    if (navigator.userAgent.includes("Android")) {
+      e.preventDefault();
+      deferredPrompt = e;
+      document.getElementById('installBanner').classList.remove('hidden');
+    }
   });
 
   document.getElementById('installBtn').addEventListener('click', async () => {
@@ -1114,15 +1090,32 @@ window.addEventListener('click', (e) => {
       deferredPrompt.prompt();
       const { outcome } = await deferredPrompt.userChoice;
       if (outcome === 'accepted') {
-        console.log('Kullanıcı uygulamayı yüklemeyi kabul etti');
-      } else {
-        console.log('Kullanıcı reddetti');
+        console.log('Yükleme kabul edildi');
       }
       deferredPrompt = null;
       document.getElementById('installBanner').classList.add('hidden');
     }
   });
-</script>
+
+  // iOS Safari mi?
+  function isIos() {
+    return /iPhone|iPad|iPod/.test(navigator.userAgent) && !window.MSStream;
+  }
+
+  function isInStandaloneMode() {
+    return ('standalone' in window.navigator) && window.navigator.standalone;
+  }
+
+  if (isIos() && !isInStandaloneMode()) {
+    // iOS'ta ve ana ekrana eklenmemişse göster
+    document.getElementById('installBanner').classList.remove('hidden');
+    document.getElementById('installBtn').innerText = "📲 Ana Ekrana Eklemek İçin Tıkla";
+    document.getElementById('installBtn').addEventListener('click', () => {
+      alert("📱 iPhone kullanıyorsan:\n\n1. Safari tarayıcısında bu siteyi aç.\n2. Alttaki paylaş simgesine (kareden çıkan ok) dokun.\n3. 'Ana Ekrana Ekle' seçeneğini seç.\n\nBöylece uygulama gibi kullanabilirsin!");
+    });
+  }
+
+
 
 
 
