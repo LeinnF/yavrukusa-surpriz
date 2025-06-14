@@ -1,6 +1,6 @@
 {
   "name": "Kutay'dan Dilara'ya",
-  "short_name": "Kutay ❤️ Dilara",
+  "short_name": "Yavrukuş'a",
   "start_url": "anasayfa.html",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -12,7 +12,7 @@
       "type": "image/png"
     },
     {
-      "src": "fotoğraflar/favicon.png",
+      "src": "fotoğraflar/favicon.jpg",
       "sizes": "512x512",
       "type": "image/png"
     }
