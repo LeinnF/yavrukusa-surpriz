@@ -606,6 +606,85 @@ button, img, a {
 	  
 
 
+.site-footer {
+  background-color: #ffe2e9;
+  color: #4c0033;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.95rem;
+  font-family: 'Poppins', sans-serif;
+  border-top: 2px dashed #ff4d6d;
+  animation: fadeInUp 1.2s ease-in-out;
+}
+
+/* Paragraflar arası boşluk */
+.site-footer p {
+  margin: 6px 0;
+}
+
+/* Kalp animasyonu */
+.heart {
+  display: inline-block;
+  animation: beat 1.2s infinite;
+  transform-origin: center;
+}
+
+/* Güncelleme ikonu parlaması */
+.update-icon {
+  animation: pulse-glow 2s infinite ease-in-out;
+  display: inline-block;
+}
+
+/* Yukarıdan gelen fade efekti */
+.fade-up {
+  opacity: 0;
+  animation: fadeInUp 1.5s ease forwards;
+  animation-delay: 1s;
+}
+
+/* Ana fade efekti */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Kalp atışı efekti */
+@keyframes beat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.2);
+  }
+}
+
+/* Parlayan güncelleme simgesi */
+@keyframes pulse-glow {
+  0%, 100% {
+    text-shadow: 0 0 5px #ff4d6d, 0 0 10px #ff4d6d;
+    transform: scale(1);
+  }
+  50% {
+    text-shadow: 0 0 15px #ff4d6d, 0 0 30px #ff99a0;
+    transform: scale(1.1);
+  }
+}
+
+
+
+
 
 
 
@@ -832,6 +911,20 @@ button, img, a {
   <a class="prev">&#10094;</a>
   <a class="next">&#10095;</a>
 </div>
+
+
+
+<footer class="site-footer">
+  <p>
+    <span class="heart">❤️</span> Bu site <strong>Kutay Bezirci</strong> tarafından geliştirildi. 🌸 Sadece <strong>Yavrukuşu</strong>'na özeldir.
+  </p>
+  <p class="fade-up">
+    <span class="update-icon">🔄</span> Sonsuza kadar belirli aralıklarla içerikler güncellenecektir.
+  </p>
+</footer>
+
+
+
 
 
 
