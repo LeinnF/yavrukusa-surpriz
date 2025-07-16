@@ -32,6 +32,8 @@ body {
   background-color: var(--dark-color);
   overflow: hidden;
   perspective: 1000px;
+margin: 0;
+  overflow-x: hidden;
 }
 
 .night {
@@ -1366,6 +1368,21 @@ body {
 }
 
 
+@media (max-width: 768px) {
+  .flowers {
+    transform: scale(0.6);
+  }
+
+  .flower__leaf {
+    width: 20px;
+    height: 40px;
+  }
+
+  .flower__light {
+    width: 6px;
+    height: 6px;
+  }
+}
 
 
 
