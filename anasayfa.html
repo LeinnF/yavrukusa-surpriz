@@ -719,6 +719,16 @@ button, img, a {
 }
 
 
+<!-- OneSignal SDK -->
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script>
+  window.OneSignal = window.OneSignal || [];
+  OneSignal.push(function() {
+    OneSignal.init({
+      appId: "3cb63aa3-d63d-4817-889e-7a3b73ee075e", // OneSignal App ID
+    });
+  });
+</script>
 
 
 
@@ -1315,3 +1325,4 @@ window.addEventListener('click', (e) => {
 
 </body>
 </html>
+
