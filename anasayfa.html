@@ -729,7 +729,38 @@ button, img, a {
     });
   });
 </script>
+<style>
+  #notifyButton {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #ff4d6d;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  #notifyButton:hover {
+    background-color: #e23a59;
+  }
+</style>
 
+<button id="notifyButton">🔔 Bildirimleri Aç</button>
+
+<script>
+  document.getElementById('notifyButton').addEventListener('click', function() {
+    OneSignal.push(function() {
+      OneSignal.showNativePrompt(); // Bildirim izni iste
+    });
+  });
+</script>
 
 
 
@@ -764,7 +795,6 @@ button, img, a {
 </div>
 
 
-<button onclick="OneSignal.registerForPushNotifications()">📢 Bildirimleri Aç</button>
 
 
 
@@ -1326,5 +1356,6 @@ window.addEventListener('click', (e) => {
 
 </body>
 </html>
+
 
 
