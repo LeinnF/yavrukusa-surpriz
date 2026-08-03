@@ -18,7 +18,13 @@
       --secondary: #ffe6ec;
       --text: #4b2c2c;
     }
-    body {
+    html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  width: 100%;
+}
+
+body {
       font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
@@ -97,7 +103,13 @@
 
     /* Mobil cihazlar için */
     @media (max-width: 600px) {
-      body {
+      html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  width: 100%;
+}
+
+body {
         font-size: 14px;
       }
       h1 {
@@ -948,7 +960,13 @@
 }
 
 @media (max-width: 768px) {
-  body {
+  html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  width: 100%;
+}
+
+body {
     padding: 8px 4px;
   }
 
@@ -1001,6 +1019,57 @@
     padding: 18px 12px !important;
     margin: 14px auto !important;
     width: 96% !important;
+  }
+}
+
+/* ==========================================
+   🎟️ KOMPAKT AŞK KUPONLARI & SAĞA-SOLA TAŞMA ENGELLEYİCİ
+   ========================================== */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  width: 100%;
+}
+
+.coupons-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 10px !important;
+}
+
+@media (max-width: 768px) {
+  .coupons-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  .coupon-card {
+    padding: 10px 6px !important;
+    border-radius: 14px !important;
+  }
+
+  .coupon-icon {
+    font-size: 1.4rem !important;
+    margin-bottom: 3px !important;
+  }
+
+  .coupon-title {
+    font-size: 0.8rem !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    margin-bottom: 3px !important;
+  }
+
+  .coupon-desc {
+    font-size: 0.68rem !important;
+    line-height: 1.25 !important;
+  }
+}
+
+@media (min-width: 500px) and (max-width: 768px) {
+  .coupons-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
   }
 }
 
