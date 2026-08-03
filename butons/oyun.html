@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" href="fotoğraflar/favicon.png" type="image/png">
+  <link rel="icon" href="../fotoğraflar/favicon.png" type="image/png">
   <title>Mini Aşk Oyunu 💖</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -114,9 +114,26 @@
     .restart-button:hover {
       background-color: #ff1493;
     }
-  </style>
+  
+    /* Mobil Uyumlu Stiller */
+    @media (max-width: 600px) {
+      body {
+        padding-top: 50px !important;
+      }
+      a[href*="anasayfa.html"] {
+        top: 10px !important;
+        left: 10px !important;
+        padding: 6px 12px !important;
+        font-size: 0.8rem !important;
+      }
+    }
+
+</style>
 </head>
 <body>
+  <!-- 🏠 Ana Sayfaya Dön Butonu -->
+  <a href="../anasayfa.html" style="position: fixed; top: 15px; left: 15px; z-index: 99999; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); color: #ff4d6d; padding: 8px 18px; border-radius: 20px; text-decoration: none; font-weight: 600; font-family: 'Segoe UI', sans-serif; box-shadow: 0 4px 14px rgba(255,77,109,0.25); border: 1.5px solid #ff8fa3; transition: transform 0.2s ease;">🏠 Ana Sayfaya Dön</a>
+
   <h2>Mini Aşk Oyunu 💖</h2>
   <button class="restart-button" onclick="restartGame()">Yeniden Başla 🔄</button>
   <div class="memory-game"></div>

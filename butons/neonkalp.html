@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Neon Kalp</title>
-    <link rel="icon" href="fotoğraflar/favicon.png" type="image/png">
+    <link rel="icon" href="../fotoğraflar/favicon.png" type="image/png">
 
 <style>
 
@@ -17,10 +17,27 @@ body {
   background-repeat: no-repeat;
 }
 
+
+    /* Mobil Uyumlu Stiller */
+    @media (max-width: 600px) {
+      body {
+        padding-top: 50px !important;
+      }
+      a[href*="anasayfa.html"] {
+        top: 10px !important;
+        left: 10px !important;
+        padding: 6px 12px !important;
+        font-size: 0.8rem !important;
+      }
+    }
+
 </style>
 </head>
 
 <body>
+  <!-- 🏠 Ana Sayfaya Dön Butonu -->
+  <a href="../anasayfa.html" style="position: fixed; top: 15px; left: 15px; z-index: 99999; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); color: #ff4d6d; padding: 8px 18px; border-radius: 20px; text-decoration: none; font-weight: 600; font-family: 'Segoe UI', sans-serif; box-shadow: 0 4px 14px rgba(255,77,109,0.25); border: 1.5px solid #ff8fa3; transition: transform 0.2s ease;">🏠 Ana Sayfaya Dön</a>
+
   <canvas id="canvas" width="1400" height="600"></canvas>
 </body>
 

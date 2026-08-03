@@ -2,17 +2,21 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" href="fotoğraflar/favicon.png" type="image/png">
+  <link rel="icon" href="../fotoğraflar/favicon.png" type="image/png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mini Hikaye</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Cursive:wght@400..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Cursive:wght@400..700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(#fff0f5, #ffe6f0);
+      background: linear-gradient(135deg, #fff0f5 0%, #ffe6f0 100%);
       font-family: 'Edu NSW ACT Cursive', cursive;
       display: flex;
       align-items: center;
@@ -22,34 +26,17 @@
     }
 
     .kitap-kapsayici {
-      background: #fff;
+      background: #ffffff;
       width: 90%;
       max-width: 700px;
-      padding: 40px;
-      box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
-      border-radius: 16px;
+      padding: 40px 30px;
+      box-shadow: 0 10px 35px rgba(255, 117, 143, 0.15);
+      border-radius: 20px;
       border: 2px solid #ffb6c1;
       text-align: center;
       position: relative;
       z-index: 1;
-    }
-
-    .kitap-kapsayici::before,
-    .kitap-kapsayici::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 10px;
-      background: #ffb6c1;
-    }
-
-    .kitap-kapsayici::before {
-      left: -10px;
-    }
-
-    .kitap-kapsayici::after {
-      right: -10px;
+      margin: 60px 15px;
     }
 
     .hikaye-metin {
@@ -58,7 +45,7 @@
       color: #b3366b;
       text-align: justify;
       opacity: 0;
-      animation: fadeIn 2s ease-in forwards;
+      animation: fadeIn 1.5s ease-in forwards;
     }
 
     @keyframes fadeIn {
@@ -67,47 +54,119 @@
       }
     }
 
-    /* Müzik butonu için stil */
-    #musicToggleBtn {
+    /* 🎵 YAN YANA HİZALI, HİÇBİR ŞEKİLDE ÇAKIŞMAYAN MÜZİK KONTROL PANELİ */
+    .music-panel {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background-color: #ffb6c1;
+      z-index: 99999;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border: 2px solid #ff8fa3;
+      padding: 8px 16px;
+      border-radius: 40px;
+      box-shadow: 0 8px 25px rgba(255, 77, 109, 0.2);
+    }
+
+    .music-btn {
+      background: linear-gradient(135deg, #ff758f, #ff4d6d);
+      color: white;
       border: none;
-      border-radius: 25px;
-      padding: 10px 20px;
-      font-family: 'Edu NSW ACT Cursive', cursive;
-      font-size: 16px;
+      height: 38px;
+      padding: 0 18px;
+      border-radius: 20px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
       cursor: pointer;
-      box-shadow: 0 4px 8px rgba(179,54,107,0.3);
-      z-index: 10;
-      user-select: none;
-      transition: background-color 0.3s ease;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(255, 77, 109, 0.3);
+      transition: all 0.2s ease;
     }
 
-    #musicToggleBtn:hover {
-      background-color: #e695ac;
+    .music-btn:hover {
+      transform: scale(1.04);
+      background: linear-gradient(135deg, #ff4d6d, #c9184a);
     }
 
-button:focus, img:focus, a:focus, input:focus, textarea:focus {
-  outline: none;
-}
+    .volume-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff0f5;
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid #ffb6c1;
+      height: 38px;
+    }
 
-button, img, a {
-  -webkit-tap-highlight-color: transparent;
-}
+    .volume-box span {
+      font-size: 1.1rem;
+    }
 
-    
+    .volume-slider {
+      width: 90px;
+      accent-color: #ff4d6d;
+      cursor: pointer;
+      height: 6px;
+      border-radius: 3px;
+    }
+
+    @media (max-width: 600px) {
+      .kitap-kapsayici {
+        width: 94%;
+        padding: 24px 16px;
+        margin: 70px 10px 90px 10px;
+      }
+      .hikaye-metin {
+        font-size: 1.1rem;
+        line-height: 1.6;
+      }
+      .music-panel {
+        bottom: 12px;
+        right: 12px;
+        padding: 6px 12px;
+        gap: 8px;
+      }
+      .music-btn {
+        height: 34px;
+        padding: 0 12px;
+        font-size: 0.8rem;
+      }
+      .volume-box {
+        height: 34px;
+        padding: 2px 8px;
+      }
+      .volume-slider {
+        width: 65px;
+      }
+    }
   </style>
 </head>
 <body>
+  <!-- 🏠 Ana Sayfaya Dön Butonu -->
+  <a href="../anasayfa.html" style="position: fixed; top: 15px; left: 15px; z-index: 99999; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); color: #ff4d6d; padding: 8px 18px; border-radius: 20px; text-decoration: none; font-weight: 600; font-family: 'Poppins', sans-serif; font-size: 0.9rem; box-shadow: 0 4px 14px rgba(255,77,109,0.25); border: 1.5px solid #ff8fa3; transition: transform 0.2s ease;">🏠 Ana Sayfaya Dön</a>
+
   <div class="kitap-kapsayici">
     <div class="hikaye-metin" id="hikayeMetin"></div>
   </div>
 
-  <audio id="backgroundMusic" src="muzik/hikaye.mp3" loop></audio>
+  <audio id="backgroundMusic" src="../muzik/hikaye.mp3" loop></audio>
 
-  <button id="musicToggleBtn">🎵 Müziği Aç</button>
+  <!-- 🎵 MOBİL UYUMLU KUSURSUZ YAN YANA MÜZİK KONTROL PANELİ -->
+  <div class="music-panel">
+    <button id="musicToggleBtn" class="music-btn">🎵 Müziği Aç</button>
+    <div class="volume-box">
+      <span>🔊</span>
+      <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.05" value="0.6">
+    </div>
+  </div>
 
   <script>
     const hikayeler = [
@@ -141,27 +200,38 @@ Ve işte o anda, gökyüzünde kalpten bir iz belirmiş. Kimse görmemiş ama ik
       if (i < rastgeleHikaye.length) {
         hedef.textContent += rastgeleHikaye.charAt(i);
         i++;
-        setTimeout(yaz, 50);
+        setTimeout(yaz, 40);
       }
     }
 
     yaz();
 
-    // Müzik butonu kontrolü
+    // Müzik & Ses Kontrolü
     const music = document.getElementById('backgroundMusic');
     const btn = document.getElementById('musicToggleBtn');
+    const slider = document.getElementById('volumeSlider');
 
-    music.volume = 0.15;  // Ses seviyesi düşük
+    // Başlangıç ses seviyesi %60
+    music.volume = 0.6;
 
     btn.addEventListener('click', () => {
       if (music.paused) {
-        music.play().catch(() => {
-          // Oynatma engellenirse sessiz başlat
+        music.play().then(() => {
+          btn.textContent = '🔇 Müziği Kapat';
+        }).catch(err => {
+          console.log("Müzik oynatma engellendi:", err);
         });
-        btn.textContent = '🔇 Müziği Kapat';
       } else {
         music.pause();
         btn.textContent = '🎵 Müziği Aç';
+      }
+    });
+
+    slider.addEventListener('input', (e) => {
+      const vol = parseFloat(e.target.value);
+      music.volume = vol;
+      if (vol === 0) {
+        btn.textContent = '🔇 Müziği Kapat';
       }
     });
   </script>
