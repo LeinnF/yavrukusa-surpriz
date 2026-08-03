@@ -5,6 +5,10 @@ const albumler = [
     "title": "🌸 Bestiii"
   },
   {
+    "id": "cat_amasra",
+    "title": "✈️ Amasra"
+  },
+  {
     "id": "cat_solohanım",
     "title": "☀️ Solo Hanım"
   },
@@ -15,6 +19,18 @@ const albumler = [
 ];
 
 const medyaListesi = [
+  {
+    "type": "photo",
+    "category": "cat_amasra",
+    "src": "fotoğraflar/amasra/IMG_1885.jpg",
+    "title": "✈️ Amasra"
+  },
+  {
+    "type": "photo",
+    "category": "cat_amasra",
+    "src": "fotoğraflar/amasra/IMG_1887.jpg",
+    "title": "✈️ Amasra"
+  },
   {
     "type": "photo",
     "category": "cat_solohanım",

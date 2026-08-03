@@ -5,13 +5,36 @@ ws = r"c:\Antigravity\yavrukusa-surpriz-main\yavrukusa-surpriz-main"
 fotos_dir = os.path.join(ws, "fotoğraflar")
 out_js_path = os.path.join(ws, "galeri-data.js")
 
+# Auto-convert iPhone HEIC files to standard web JPG
+try:
+    from PIL import Image
+    import pillow_heif
+    pillow_heif.register_heif_opener()
+    
+    for root, dirs, files in os.walk(fotos_dir):
+        for f in files:
+            ext = os.path.splitext(f)[1].lower()
+            if ext in [".heic", ".heif"]:
+                heic_path = os.path.join(root, f)
+                jpg_name = os.path.splitext(f)[0] + ".jpg"
+                jpg_path = os.path.join(root, jpg_name)
+                try:
+                    img = Image.open(heic_path)
+                    img.save(jpg_path, "JPEG", quality=92)
+                    os.remove(heic_path)
+                    print(f"HEIC Dönüştürüldü: {f} -> {jpg_name}")
+                except Exception as err:
+                    print(f"HEIC dönüşüm hatası {f}: {err}")
+except Exception as e:
+    pass
+
 ALBUM_NAMES = {
     "bestiii": "🌸 Bestiii",
     "solohanım": "☀️ Solo Hanım",
     "us": "❤️‍🔥 US"
 }
 
-PHOTO_EXTS = {".jpg", ".jpeg", ".png", ".webp", ".gif", ".heic", ".bmp"}
+PHOTO_EXTS = {".jpg", ".jpeg", ".png", ".webp", ".gif", ".bmp"}
 VIDEO_EXTS = {".mp4", ".webm", ".mov", ".avi", ".mkv"}
 
 albumler = [
