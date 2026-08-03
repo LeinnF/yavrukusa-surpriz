@@ -1620,7 +1620,8 @@ body {
 
     document.addEventListener('DOMContentLoaded', () => {
       renderAlbumTabs();
-      renderGallery('all');
+      const initialCat = (typeof albumler !== 'undefined' && albumler.length > 0) ? albumler[0].id : 'cat_bestiii';
+      renderGallery(initialCat);
       initLightboxSwipe();
     });
 
@@ -1649,10 +1650,25 @@ body {
       if (!grid || typeof medyaListesi === 'undefined') return;
       grid.innerHTML = '';
 
-      if (category === 'all') {
+      // Varsayılan kural: Eğer kategori belirtilmemişse ilk albüm id'sini kullan (cat_bestiii)
+      const targetCategory = category || (typeof albumler !== 'undefined' && albumler.length > 0 ? albumler[0].id : 'cat_bestiii');
+
+      if (targetCategory === 'all') {
         mevcutFiltrelenmisList = [...medyaListesi];
       } else {
-        mevcutFiltrelenmisList = medyaListesi.filter(item => item.category === category);
+        mevcutFiltrelenmisList = medyaListesi.filter(item => item.category === targetCategory);
+      }
+
+      if (mevcutFiltrelenmisList.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 40px 20px; background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); border-radius: 20px; border: 2px dashed #ff8fa3; margin: 10px auto; width: 100%;">
+            <div style="font-size: 2.5rem; margin-bottom: 8px;">🌸</div>
+            <div style="font-family: 'Poppins', sans-serif; font-size: 1rem; color: #8c3b50; font-weight: 600;">
+              Bu albüme fotoğraflarımız çok yakında yüklenecek sevgilim! 💖
+            </div>
+          </div>
+        `;
+        return;
       }
 
       mevcutFiltrelenmisList.forEach((item, index) => {
