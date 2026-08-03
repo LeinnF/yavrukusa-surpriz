@@ -944,101 +944,65 @@ body {
 
 
 /* ==========================================
-   📱 MOBİL ÖZEL TASARIM VE BOYUTLANDIRMA
+   📱 YALNIZCA MOBİL EKRANLAR İÇİN DÜZENLEMELER (MAX-WIDTH: 768PX)
+   (Masaüstü görünümü kesinlikle orijinal ve normal kalacaktır)
    ========================================== */
-.live-timer-grid {
-  display: grid !important;
-  grid-template-columns: repeat(4, 1fr) !important;
-  gap: 6px !important;
-  padding: 0 !important;
-}
-
-.timer-card {
-  padding: 10px 4px !important;
-  border-radius: 14px !important;
-  text-align: center !important;
-}
-
 @media (max-width: 768px) {
   html, body {
-  overflow-x: hidden !important;
-  max-width: 100vw !important;
-  width: 100%;
-}
-
-body {
-    padding: 8px 4px;
+    overflow-x: hidden !important;
+    touch-action: pan-y !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
-  /* 1. En Üstteki Şebekten Yavrukuşuna Yazısı Büyütme */
+  /* 1. En Üstteki Şebekten Yavrukuşuna Başlığı (KESİNTİSİZ, ASLA KESİLMEYEN) */
   .main-top-title {
-    font-size: 2.4rem !important;
-    line-height: 1.2 !important;
+    font-size: 1.85rem !important;
+    line-height: 1.3 !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    word-break: break-word !important;
+    margin: 6px 0 !important;
   }
 
-  /* 2 & 3. Kalbe Düşen Günler ve Diğer Başlıklar Büyütülmüş Tek Satır */
-  h2 {
-    font-size: 1.45rem !important;
+  /* 2. Bölüm Başlıkları (Kutuya Sığan, Kesilmeyen) */
+  h2:not(.main-top-title) {
+    font-size: 1.35rem !important;
     font-weight: 700 !important;
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
-    margin: 0 0 12px 0 !important;
+    margin: 0 0 10px 0 !important;
   }
 
-  /* 4. Sayaç Kutucukları (Gün, Saat, Dakika, Saniye) Tek Satırda 4'lü Yan Yana */
+  /* 3. Sayaç Kutucukları Mobilde 4'lü Yan Yana */
   .live-timer-grid {
+    display: grid !important;
     grid-template-columns: repeat(4, 1fr) !important;
     gap: 4px !important;
+    padding: 0 !important;
   }
 
   .timer-card {
-    padding: 10px 2px !important;
+    padding: 8px 2px !important;
     border-radius: 12px !important;
   }
 
   .timer-card .number, .zaman-sayi {
-    font-size: 1.25rem !important;
+    font-size: 1.15rem !important;
     font-weight: 700 !important;
   }
 
   .timer-card .label, .zaman-etiket {
-    font-size: 0.68rem !important;
+    font-size: 0.65rem !important;
     font-weight: 600 !important;
     margin-top: 2px !important;
   }
 
-  /* Butonlar & Konteynerlar */
-  .sayfa-btn {
-    padding: 8px 12px !important;
-    font-size: 0.82rem !important;
-    white-space: nowrap !important;
-  }
-
-  .counter-box-container, .envelope-section, .coupons-section-container, .gallery-section-container {
-    padding: 18px 12px !important;
-    margin: 14px auto !important;
-    width: 96% !important;
-  }
-}
-
-/* ==========================================
-   🎟️ KOMPAKT AŞK KUPONLARI & SAĞA-SOLA TAŞMA ENGELLEYİCİ
-   ========================================== */
-html, body {
-  overflow-x: hidden !important;
-  max-width: 100vw !important;
-  width: 100%;
-}
-
-.coupons-grid {
-  display: grid !important;
-  grid-template-columns: repeat(3, 1fr) !important;
-  gap: 10px !important;
-}
-
-@media (max-width: 768px) {
+  /* 4. Kuponlar Mobilde 2'li & 3'lü Kompakt Yan Yana */
   .coupons-grid {
+    display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 8px !important;
   }
@@ -1058,12 +1022,24 @@ html, body {
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
-    margin-bottom: 3px !important;
   }
 
   .coupon-desc {
     font-size: 0.68rem !important;
     line-height: 1.25 !important;
+  }
+
+  /* Butonlar & Konteynerlar Mobilde Sıkılaştırıldı */
+  .sayfa-btn {
+    padding: 7px 11px !important;
+    font-size: 0.78rem !important;
+    white-space: nowrap !important;
+  }
+
+  .counter-box-container, .envelope-section, .coupons-section-container, .gallery-section-container {
+    padding: 16px 10px !important;
+    margin: 14px auto !important;
+    width: 96% !important;
   }
 }
 
@@ -1071,21 +1047,6 @@ html, body {
   .coupons-grid {
     grid-template-columns: repeat(3, 1fr) !important;
   }
-}
-
-
-/* 🛑 KESİN SAĞA-SOLA KAYMA VE SALLANMA ENGELLEYİCİ */
-html, body {
-  overflow-x: hidden !important;
-  touch-action: pan-y !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  position: relative !important;
-}
-
-*, *::before, *::after {
-  max-width: 100vw !important;
-  box-sizing: border-box !important;
 }
 
 </style>
