@@ -932,101 +932,123 @@
 
 
 /* ==========================================
-   📱 KAPSAMLI MOBİL UYUM (RESPONSIVE) STİLLERİ
+   📱 MOBİL İÇİN KUSURSUZ VE ZARİF DÜZEN (SINGLE ROW & COMPACT TITLES)
    ========================================== */
 @media (max-width: 768px) {
   body {
-    padding: 10px 8px;
+    padding: 8px 4px;
+  }
+
+  /* 1. Tüm Başlıklar Tek Satıra Sığsın ve Küçülsün */
+  h2 {
+    font-size: 1.25rem !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    margin: 0 0 10px 0 !important;
   }
 
   .baslik-section {
-    padding: 20px 14px !important;
-    margin: 15px auto !important;
-    width: 95% !important;
+    padding: 16px 10px !important;
+    margin: 10px auto !important;
+    width: 96% !important;
   }
 
+  /* 2. Mini Butonlar (Mini Oyun, Hikayeler vs.) Şık ve Kompakt */
   .sayfa-butonlari {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 10px !important;
-    padding: 0 5px !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    padding: 0 !important;
   }
 
   .sayfa-btn {
-    padding: 12px 14px !important;
-    font-size: 0.9rem !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
+    padding: 7px 12px !important;
+    font-size: 0.78rem !important;
+    white-space: nowrap !important;
+    border-radius: 14px !important;
+    flex: 0 1 auto !important;
+    box-shadow: 0 3px 10px rgba(255, 77, 109, 0.2) !important;
   }
 
+  /* 3. Canlı Sayaçlar (Gün, Saat, Dakika, Saniye) TEK SATIRDA YAN YANA (4'lü) */
   .zaman-kartlari-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 10px !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 5px !important;
+    padding: 0 !important;
   }
 
   .zaman-kart {
-    padding: 14px 10px !important;
+    padding: 10px 4px !important;
+    border-radius: 12px !important;
   }
 
   .zaman-sayi {
-    font-size: 1.8rem !important;
+    font-size: 1.15rem !important;
+    font-weight: 700 !important;
   }
 
   .zaman-etiket {
-    font-size: 0.75rem !important;
+    font-size: 0.65rem !important;
+    margin-top: 2px !important;
+  }
+
+  /* 4. Konteynerlar & Zarf & Kuponlar Mobil Uyum */
+  .envelope-section, .coupons-section-container, .gallery-section-container, .zaman-kartlari-container {
+    padding: 16px 10px !important;
+    margin: 14px auto !important;
+    width: 96% !important;
   }
 
   .coupons-grid {
-    grid-template-columns: 1fr !important;
-    gap: 14px !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
   }
 
   .coupon-card {
-    padding: 16px 14px !important;
+    padding: 12px 8px !important;
+    border-radius: 14px !important;
   }
 
-  .gallery-tabs {
-    display: flex !important;
-    overflow-x: auto !important;
+  .coupon-icon {
+    font-size: 1.5rem !important;
+    margin-bottom: 4px !important;
+  }
+
+  .coupon-title {
+    font-size: 0.82rem !important;
     white-space: nowrap !important;
-    padding-bottom: 8px !important;
-    gap: 8px !important;
-    -webkit-overflow-scrolling: touch;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
   }
 
-  .tab-btn {
-    padding: 8px 16px !important;
-    font-size: 0.85rem !important;
-    flex-shrink: 0 !important;
+  .coupon-desc {
+    font-size: 0.7rem !important;
+    line-height: 1.25 !important;
   }
 
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 10px !important;
+    gap: 8px !important;
   }
 
-  .envelope-section {
-    padding: 20px 14px !important;
-    margin: 20px auto !important;
+  .tab-btn {
+    padding: 6px 12px !important;
+    font-size: 0.78rem !important;
   }
 
   .bana-tikla-btn {
-    padding: 12px 20px !important;
-    font-size: 1rem !important;
+    padding: 10px 18px !important;
+    font-size: 0.9rem !important;
+    border-radius: 16px !important;
   }
 
   .love-letter-card {
-    padding: 16px 14px !important;
-    font-size: 1.05rem !important;
+    padding: 14px 12px !important;
+    font-size: 0.95rem !important;
   }
 }
-
-@media (max-width: 480px) {
-  .sayfa-butonlari {
-    grid-template-columns: 1fr !important;
-  }
-}
-
 </style>
 </head>
 <body>
