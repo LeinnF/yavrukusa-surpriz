@@ -1049,6 +1049,122 @@ body {
   }
 }
 
+
+/* ==========================================
+   📸 GOOGLE FOTOĞRAFLAR ALBÜM KARTLARI STİLLERİ
+   ========================================== */
+.google-album-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.google-album-card {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  border: 2px solid #ffb6c1;
+  border-radius: 22px;
+  padding: 20px 18px;
+  box-shadow: 0 8px 24px rgba(255, 77, 109, 0.12);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.google-album-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(255, 77, 109, 0.25);
+  border-color: #ff4d6d;
+}
+
+.google-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: linear-gradient(135deg, #ff758f, #ff4d6d);
+  color: white;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(255,77,109,0.3);
+}
+
+.google-icon {
+  font-size: 2.5rem;
+  margin-bottom: 8px;
+}
+
+.google-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ff4d6d;
+  margin-bottom: 6px;
+}
+
+.google-desc {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  color: #8c3b50;
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+
+.google-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #ff758f, #ff4d6d);
+  color: white;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(255,77,109,0.3);
+  transition: all 0.2s ease;
+}
+
+.google-btn:hover {
+  background: linear-gradient(135deg, #ff4d6d, #c9184a);
+  transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+  .google-album-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+  .google-album-card {
+    padding: 14px 10px !important;
+    border-radius: 16px !important;
+  }
+  .google-title {
+    font-size: 0.9rem !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+  .google-desc {
+    font-size: 0.72rem !important;
+    line-height: 1.25 !important;
+    margin-bottom: 12px !important;
+  }
+  .google-btn {
+    padding: 8px 10px !important;
+    font-size: 0.78rem !important;
+    border-radius: 12px !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1221,20 +1337,17 @@ body {
   <!-- ==========================================
        🖼️ GEZİLERİMİZ & ANILARIMIZ GALERİSİ
        ========================================== -->
+  <!-- ==========================================
+       🖼️ GOOGLE FOTOĞRAFLAR GEZİ ALBÜMLERİMİZ
+       ========================================== -->
   <section class="gallery-section-container">
-    <h2 style="font-family: 'Dancing Script', cursive; color: #ff4d6d; font-size: 2.6rem; margin-bottom: 8px;">
+    <h2 style="font-family: 'Dancing Script', cursive; color: #ff4d6d; font-size: 2.6rem; margin-bottom: 12px;">
       ✈️ Gezilerimiz & Fotoğraf Albümlerimiz ✨
     </h2>
-    
 
-    <!-- Dinamik Gezi / Albüm Filtre Butonları -->
-    <div class="gallery-tabs" id="albumTabsContainer">
-      <!-- Albüm butonları JS ile otomatik oluşturulacak -->
-    </div>
-
-    <!-- Fotoğraf ve Video Grid Kartları -->
-    <div class="gallery-grid" id="mainGalleryGrid">
-      <!-- Medya öğeleri JS ile dinamik doldurulacak -->
+    <!-- Google Fotoğraflar Kartlar Grid -->
+    <div class="google-album-grid" id="googleAlbumsGrid">
+      <!-- JS ile dinamik doldurulacak -->
     </div>
   </section>
 
@@ -1612,164 +1725,72 @@ body {
 
     
 
+    
     // ==========================================
-    // 🖼️ GALERİ VE LIGHTBOX İŞLEMLERİ
+    // 📸 GOOGLE FOTOĞRAFLAR ALBÜM KARTLARI İŞLEMLERİ
     // ==========================================
-    let mevcutFiltrelenmisList = [];
-    let mevcutAktifIndex = 0;
-
-    document.addEventListener('DOMContentLoaded', () => {
-      renderAlbumTabs();
-      const initialCat = (typeof albumler !== 'undefined' && albumler.length > 0) ? albumler[0].id : 'cat_bestiii';
-      renderGallery(initialCat);
-      initLightboxSwipe();
-    });
-
-    function renderAlbumTabs() {
-      const tabsContainer = document.getElementById('albumTabsContainer');
-      if (!tabsContainer || typeof albumler === 'undefined') return;
-      tabsContainer.innerHTML = '';
-
-      albumler.forEach((alb, index) => {
-        const btn = document.createElement('button');
-        btn.className = `tab-btn ${index === 0 ? 'active' : ''}`;
-        btn.textContent = alb.title;
-        btn.onclick = () => filterGallery(alb.id, btn);
-        tabsContainer.appendChild(btn);
-      });
-    }
-
-    function filterGallery(category, buttonEl) {
-      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-      if (buttonEl) buttonEl.classList.add('active');
-      renderGallery(category);
-    }
-
-    function renderGallery(category) {
-      const grid = document.getElementById('mainGalleryGrid');
-      if (!grid || typeof medyaListesi === 'undefined') return;
-      grid.innerHTML = '';
-
-      // Varsayılan kural: Eğer kategori belirtilmemişse ilk albüm id'sini kullan (cat_bestiii)
-      const targetCategory = category || (typeof albumler !== 'undefined' && albumler.length > 0 ? albumler[0].id : 'cat_bestiii');
-
-      if (targetCategory === 'all') {
-        mevcutFiltrelenmisList = [...medyaListesi];
-      } else {
-        mevcutFiltrelenmisList = medyaListesi.filter(item => item.category === targetCategory);
+    const googleAlbumler = [
+      {
+        id: "bestiii",
+        icon: "🌸",
+        title: "Bestiii Albümümüz",
+        badge: "Yeni Albüm ✨",
+        desc: "Birlikte çekildiğimiz tüm özel fotoğraflarımız ve anılarımız 💖",
+        link: "https://photos.google.com" // Google Fotoğraflar albüm linkinizi buraya yapıştırabilirsiniz
+      },
+      {
+        id: "amasra",
+        icon: "✈️",
+        title: "Amasra Gezimiz",
+        badge: "Gezi Albümü 🌊",
+        desc: "Amasra tatilimizde çektiğimiz tüm güzel fotoğraf ve videolar 📸",
+        link: "https://photos.app.goo.gl/J6L9Rer8cGtGQGVh9" // Amasra albüm linkinizi buraya yapıştırabilirsiniz
+      },
+      {
+        id: "solohanım",
+        icon: "☀️",
+        title: "Solo Hanım",
+        badge: "Özel Koleksiyon 🌷",
+        desc: "En güzel ve ışıl ışıl solo fotoğrafların ✨",
+        link: "https://photos.google.com"
+      },
+      {
+        id: "us",
+        icon: "❤️‍🔥",
+        title: "US (Biz)",
+        badge: "Bizim Anılarımız 💑",
+        desc: "Birlikte yaşadığımız tüm unutulmaz anılar ve kareler 💞",
+        link: "https://photos.google.com"
       }
+    ];
 
-      if (mevcutFiltrelenmisList.length === 0) {
-        grid.innerHTML = `
-          <div style="grid-column: 1 / -1; text-align: center; padding: 40px 20px; background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); border-radius: 20px; border: 2px dashed #ff8fa3; margin: 10px auto; width: 100%;">
-            <div style="font-size: 2.5rem; margin-bottom: 8px;">🌸</div>
-            <div style="font-family: 'Poppins', sans-serif; font-size: 1rem; color: #8c3b50; font-weight: 600;">
-              Bu albüme fotoğraflarımız çok yakında yüklenecek sevgilim! 💖
-            </div>
+    function renderGoogleAlbums() {
+      const grid = document.getElementById("googleAlbumsGrid");
+      if (!grid) return;
+      grid.innerHTML = "";
+
+      googleAlbumler.forEach(alb => {
+        const card = document.createElement("div");
+        card.className = "google-album-card";
+        card.innerHTML = `
+          <div class="google-badge">${alb.badge}</div>
+          <div class="google-icon">${alb.icon}</div>
+          <div>
+            <div class="google-title">${alb.title}</div>
+            <div class="google-desc">${alb.desc}</div>
           </div>
+          <a href="${alb.link}" target="_blank" rel="noopener noreferrer" class="google-btn">
+            📸 Albümü Aç ↗️
+          </a>
         `;
-        return;
-      }
-
-      mevcutFiltrelenmisList.forEach((item, index) => {
-        const card = document.createElement('div');
-        card.className = 'gallery-card';
-        card.onclick = () => openLightbox(index);
-
-        if (item.type === 'photo') {
-          card.innerHTML = `
-            <img src="${item.src}" alt="${item.title}" loading="lazy">
-            <div class="card-overlay">${item.title}</div>
-          `;
-        } else if (item.type === 'video') {
-          card.innerHTML = `
-            <video poster="${item.poster || ''}" preload="metadata">
-              <source src="${item.src}" type="video/mp4">
-            </video>
-            <div class="video-badge">▶</div>
-            <div class="card-overlay">${item.title}</div>
-          `;
-        }
         grid.appendChild(card);
       });
     }
 
-    function openLightbox(index) {
-      mevcutAktifIndex = index;
-      const modal = document.getElementById('modernLightbox');
-      if (modal) modal.classList.add('active');
-      updateLightboxMedia();
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeLightbox() {
-      const modal = document.getElementById('modernLightbox');
-      if (modal) modal.classList.remove('active');
-      const wrapper = document.getElementById('lightboxMediaWrapper');
-      if (wrapper) wrapper.innerHTML = '';
-      document.body.style.overflow = '';
-    }
-
-    function updateLightboxMedia() {
-      if (mevcutFiltrelenmisList.length === 0) return;
-      const item = mevcutFiltrelenmisList[mevcutAktifIndex];
-
-      const wrapper = document.getElementById('lightboxMediaWrapper');
-      const counter = document.getElementById('lightboxCounter');
-      const title = document.getElementById('lightboxTitle');
-
-      if (counter) counter.textContent = `${mevcutAktifIndex + 1} / ${mevcutFiltrelenmisList.length}`;
-      if (title) title.textContent = item.title || 'Anı';
-
-      if (item.type === 'photo') {
-        wrapper.innerHTML = `<img src="${item.src}" class="lightbox-media" alt="${item.title}">`;
-      } else if (item.type === 'video') {
-        wrapper.innerHTML = `
-          <video controls autoplay class="lightbox-media">
-            <source src="${item.src}" type="video/mp4">
-            Tarayıcınız video formatını desteklemiyor.
-          </video>
-        `;
-      }
-    }
-
-    function nextLightboxMedia() {
-      if (mevcutFiltrelenmisList.length === 0) return;
-      mevcutAktifIndex = (mevcutAktifIndex + 1) % mevcutFiltrelenmisList.length;
-      updateLightboxMedia();
-    }
-
-    function prevLightboxMedia() {
-      if (mevcutFiltrelenmisList.length === 0) return;
-      mevcutAktifIndex = (mevcutAktifIndex - 1 + mevcutFiltrelenmisList.length) % mevcutFiltrelenmisList.length;
-      updateLightboxMedia();
-    }
-
-    document.addEventListener('keydown', (e) => {
-      const modal = document.getElementById('modernLightbox');
-      if (!modal || !modal.classList.contains('active')) return;
-
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowRight') nextLightboxMedia();
-      if (e.key === 'ArrowLeft') prevLightboxMedia();
+    document.addEventListener("DOMContentLoaded", () => {
+      renderGoogleAlbums();
     });
 
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    function initLightboxSwipe() {
-      const modal = document.getElementById('modernLightbox');
-      if (!modal) return;
-      modal.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-      }, { passive: true });
-
-      modal.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        if (touchEndX < touchStartX - 50) nextLightboxMedia();
-        if (touchEndX > touchStartX + 50) prevLightboxMedia();
-      }, { passive: true });
-    }
 
     // --- PWA İLİŞKİLİ ---
     let deferredPrompt;
