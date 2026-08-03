@@ -1,88 +1,327 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+  <!-- 📱 PWA & MOBİL UYGULAMA ETİKETLERİ -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ff4d6d">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Yavrukuş">
+  <link rel="apple-touch-icon" href="fotoğraflar/favicon.png">
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Giriş</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="fotoğraflar/favicon.png" type="image/png">
+  <title>Yavrukuş'un Bahçesi 🌸 Giriş</title>
+  
   <style>
+    :root {
+      --primary-color: #ff4d6d;
+      --secondary-color: #ff8fa3;
+      --bg-gradient: linear-gradient(135deg, #ffeef2 0%, #ffd6e0 50%, #ffb3c1 100%);
+      --glass-bg: rgba(255, 255, 255, 0.75);
+      --glass-border: rgba(255, 255, 255, 0.9);
+      --text-color: #4b2c2c;
+    }
+
+    * {
+      box-sizing: border-box;
+      user-select: none;
+    }
+
     body {
-      background-color: #ffeef2;
-      font-family: 'Comic Sans MS', cursive;
+      background: var(--bg-gradient);
+      font-family: 'Poppins', sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
+      overflow: hidden;
+      position: relative;
     }
 
-    .login-box {
-      background: white;
-      padding: 40px;
-      border-radius: 16px;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    /* Arka Plan Kalp Animasyonları */
+    .bg-hearts {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .bg-heart {
+      position: absolute;
+      color: rgba(255, 143, 163, 0.35);
+      animation: floatUp 8s infinite linear;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) scale(0.8) rotate(0deg);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.4) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Cam Kart Tasarımı (Glassmorphism) */
+    .login-card {
+      position: relative;
+      z-index: 10;
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 40px 30px;
+      border-radius: 28px;
+      box-shadow: 0 15px 35px rgba(255, 77, 109, 0.2), 0 5px 15px rgba(0, 0, 0, 0.05);
+      border: 2px solid var(--glass-border);
       text-align: center;
+      max-width: 380px;
+      width: 90%;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .login-card:hover {
+      box-shadow: 0 20px 40px rgba(255, 77, 109, 0.3);
+    }
+
+    .card-header-icon {
+      font-size: 3.5rem;
+      margin-bottom: 10px;
+      display: inline-block;
+      animation: heartPulse 1.8s infinite ease-in-out;
+    }
+
+    @keyframes heartPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+
+    h2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.3rem;
+      color: var(--primary-color);
+      margin: 0 0 8px 0;
+    }
+
+    p.subtitle {
+      color: #8c3b50;
+      font-size: 0.95rem;
+      margin: 0 0 25px 0;
+      line-height: 1.4;
+    }
+
+    /* Şifre Kutu & PIN Noktaları */
+    .pin-display {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+
+    .pin-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid var(--primary-color);
+      background: transparent;
+      transition: all 0.25s ease;
+    }
+
+    .pin-dot.filled {
+      background: var(--primary-color);
+      box-shadow: 0 0 10px rgba(255, 77, 109, 0.6);
+      transform: scale(1.15);
     }
 
     input[type="password"] {
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      width: 200px;
-      font-size: 1rem;
-      margin-bottom: 10px;
+      width: 100%;
+      padding: 14px;
+      border-radius: 16px;
+      border: 2px solid var(--secondary-color);
+      background: rgba(255, 255, 255, 0.9);
+      font-size: 1.2rem;
+      text-align: center;
+      letter-spacing: 4px;
+      color: var(--text-color);
+      outline: none;
+      transition: all 0.3s ease;
+      margin-bottom: 20px;
     }
 
-    button {
-      background-color: #ff8fa3;
+    input[type="password"]:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 12px rgba(255, 77, 109, 0.25);
+    }
+
+    .btn-login {
+      background: linear-gradient(135deg, #ff758f 0%, #ff4d6d 100%);
       color: white;
-      padding: 10px 20px;
+      padding: 14px 32px;
       border: none;
-      border-radius: 10px;
-      font-size: 1rem;
+      border-radius: 18px;
+      font-size: 1.1rem;
+      font-weight: 600;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      width: 100%;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 18px rgba(255, 77, 109, 0.35);
     }
 
-    button:hover {
-      background-color: #e56b84;
+    .btn-login:hover {
+      background: linear-gradient(135deg, #ff4d6d 0%, #c9184a 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(255, 77, 109, 0.45);
     }
 
-    .error {
-      color: red;
-      margin-top: 10px;
+    .btn-login:active {
+      transform: translateY(1px);
     }
 
-    button:focus, img:focus, a:focus, input:focus, textarea:focus {
-  outline: none;
+    .error-msg {
+      color: var(--primary-color);
+      margin-top: 15px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      min-height: 24px;
+    }
+
+    /* Sallanma Efekti (Hatalı Girişte) */
+    .shake {
+      animation: shakeAnim 0.4s ease-in-out;
+    }
+
+    @keyframes shakeAnim {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-10px); }
+      40%, 80% { transform: translateX(10px); }
+    }
+
+    /* Başarılı Giriş Efekti */
+    .success-fade {
+      animation: successFade 0.6s ease forwards;
+    }
+
+    @keyframes successFade {
+      0% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(1.1); }
+    }
+  
+@media (max-width: 480px) {
+  .login-card {
+    width: 92% !important;
+    padding: 30px 18px !important;
+  }
+  .pin-dots {
+    gap: 8px !important;
+  }
+  .pin-dot {
+    width: 14px !important;
+    height: 14px !important;
+  }
+  .login-title {
+    font-size: 2.2rem !important;
+  }
 }
 
-button, img, a {
-  -webkit-tap-highlight-color: transparent;
-}
-
-    
-  </style>
-  </head>
+</style>
+</head>
 <body>
-  <div class="login-box">
-    <h2>🌸 İlk Öpücük Tarihimiz 🌸(Ördek: 260903)</h2>
-    <input type="password" id="password" placeholder="Parola giriniz">
-    <br>
-    <button onclick="checkPassword()">Giriş</button>
-    <div id="error" class="error"></div>
+
+  <!-- Arka Plan Kalp Efektleri -->
+  <div class="bg-hearts" id="bgHearts"></div>
+
+  <!-- Cam Giriş Kartı -->
+  <div class="login-card" id="loginCard">
+    <div class="card-header-icon">🌸</div>
+    <h2>İlk Öpücük Tarihimiz</h2>
+    <p class="subtitle">Sadece Yavrukuş'a Özeldir 💖</p>
+
+    <div class="pin-display" id="pinDisplay">
+      <div class="pin-dot"></div>
+      <div class="pin-dot"></div>
+      <div class="pin-dot"></div>
+      <div class="pin-dot"></div>
+      <div class="pin-dot"></div>
+      <div class="pin-dot"></div>
+    </div>
+
+    <input type="password" id="password" placeholder="••••••" maxlength="6" autofocus autocomplete="off">
+    <button class="btn-login" onclick="checkPassword()">Giriş Yap 💞</button>
+    <div id="error" class="error-msg"></div>
   </div>
 
   <script>
-    const doğruParola = "160325"; // 🔐 Buraya istediğin parolayı yaz
-      function checkPassword() {
-      const input = document.getElementById("password").value;
-      const error = document.getElementById("error");
-          if (input === doğruParola) {
-        // Doğruysa yönlendir
-        window.location.href = "anasayfa.html"; // Gerçek sayfanın adı neyse onu yaz
+    const doğruParola = "160325";
+    const passwordInput = document.getElementById("password");
+    const pinDots = document.querySelectorAll(".pin-dot");
+    const errorDiv = document.getElementById("error");
+    const loginCard = document.getElementById("loginCard");
+
+    // Arka plana uçan kalpler oluştur
+    function createBgHearts() {
+      const container = document.getElementById("bgHearts");
+      const symbols = ["💖", "💕", "🌸", "💗", "🌷"];
+      for (let i = 0; i < 15; i++) {
+        const heart = document.createElement("div");
+        heart.className = "bg-heart";
+        heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDelay = Math.random() * 5 + "s";
+        heart.style.fontSize = (16 + Math.random() * 20) + "px";
+        container.appendChild(heart);
+      }
+    }
+    createBgHearts();
+
+    // Şifre kutusu değiştikçe PIN noktalarını güncelle
+    passwordInput.addEventListener("input", () => {
+      const val = passwordInput.value;
+      pinDots.forEach((dot, index) => {
+        if (index < val.length) {
+          dot.classList.add("filled");
+        } else {
+          dot.classList.remove("filled");
+        }
+      });
+      errorDiv.textContent = "";
+
+      // 6 hane tamamlandığında otomatik kontrol et
+      if (val.length === 6) {
+        checkPassword();
+      }
+    });
+
+    // Enter tuşu desteği
+    passwordInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        checkPassword();
+      }
+    });
+
+    function checkPassword() {
+      const input = passwordInput.value;
+      if (input === doğruParola) {
+        errorDiv.style.color = "#2b9348";
+        errorDiv.textContent = "✨ Şifre Doğru! Yönlendiriliyorsunuz...";
+        loginCard.classList.add("success-fade");
+        setTimeout(() => {
+          window.location.href = "anasayfa.html";
+        }, 500);
       } else {
-        error.innerText = "❌ Hatalı parola! Bir daha dene.";
+        errorDiv.style.color = "#ff4d6d";
+        errorDiv.textContent = "❌ Hatalı parola! Bir daha dene.";
+        loginCard.classList.remove("shake");
+        void loginCard.offsetWidth; // animasyonu tetikle
+        loginCard.classList.add("shake");
+        passwordInput.value = "";
+        pinDots.forEach(dot => dot.classList.remove("filled"));
       }
     }
   </script>
